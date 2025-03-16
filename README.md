@@ -66,5 +66,8 @@
 - [리액트 useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
 - [컴포넌트 네이밍을 위한 자바스크립트 네이밍 컨벤션](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8)
 - [useState, useEffect hooks](https://velog.io/@velopert/react-hooks#1-usestate)
-- [styled-component](https://styled-components.com/docs/basics#getting-started) - [create react app (CRA) 지원종료 공식문서](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) - [create react app 지원종료관련 okky 커뮤니티 게시글](https://okky.kr/articles/1527414) 
-- [cra 대신에 vite로 React 프로젝트 시작하기](https://www.daleseo.com/vite-react/) - [Vite 실무 적용기 - 설명 + 프로젝트 설정](https://blog.hectodata.co.kr/bonjour-vite/)
+- [styled-component](https://styled-components.com/docs/basics#getting-started) 
+- [create react app (CRA) 지원종료 공식문서](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) 
+- [create react app 지원종료관련 okky 커뮤니티 게시글](https://okky.kr/articles/1527414) 
+- [cra 대신에 vite로 React 프로젝트 시작하기](https://www.daleseo.com/vite-react/) 
+- [Vite 실무 적용기 - 설명 + 프로젝트 설정](https://blog.hectodata.co.kr/bonjour-vite/)
