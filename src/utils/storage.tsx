@@ -3,16 +3,16 @@ interface TodoDataItemInfo {
   content: string;
   isDone: boolean;
 }
-interface TodoDataInfo {
+export interface TodoDataInfo {
   [key: string]: TodoDataItemInfo[];
 }
 
 const saveData = (data: TodoDataInfo) => {
   localStorage.setItem(StorageKey, JSON.stringify(data));
 };
-const loadData = (): TodoDataInfo | [] => {
+const loadData = (): TodoDataInfo | {} => {
   const todoData = localStorage.getItem(StorageKey);
-  return todoData ? JSON.parse(todoData) : [];
+  return todoData ? JSON.parse(todoData) : {};
 };
 const addData = (date: string, todoData: TodoDataInfo, contents: string) => {
   if (!todoData[date]) {
