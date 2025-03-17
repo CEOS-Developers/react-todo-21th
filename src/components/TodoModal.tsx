@@ -144,6 +144,9 @@ const Modal = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   width: 400px;
+  @media (max-width: 768px) {
+    width: 80%;
+  }
   background-color: white;
   z-index: 1000;
   padding: 20px;

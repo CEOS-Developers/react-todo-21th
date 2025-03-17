@@ -147,6 +147,9 @@ const CalendarDate = styled.div`
 `;
 const HighlightDate = styled.div<{ haveTodo: boolean }>`
   font-size: 1rem;
+  @media (max-width: 768px) {
+    font-size: 0.8rem;
+  }
   width: 30px;
   white-space: nowrap;
   ${(props) =>
@@ -156,6 +159,9 @@ const HighlightDate = styled.div<{ haveTodo: boolean }>`
 `;
 const CountMessage = styled.div`
   font-size: 0.8rem;
+  @media (max-width: 768px) {
+    font-size: 0.5rem;
+  }
   margin-top: 2px;
   white-space: nowrap;
 `;
@@ -165,6 +171,9 @@ const CompleteStamp = styled.img`
 `;
 const MessageContainer = styled.div`
   font-size: 1rem;
+  @media (max-width: 768px) {
+    font-size: 0.6rem;
+  }
   white-space: nowrap;
   color: #505050;
   text-align: right;
@@ -186,6 +195,10 @@ const DateContainer = styled.div<{ condition: boolean }>`
   text-align: right;
   height: 90px;
   border: 0.5px solid #000;
+  @media (max-width: 768px) {
+    padding: 5px;
+    height: 70px;
+  }
   &:nth-child(7n + 1) {
     color: red;
   }
@@ -199,6 +212,9 @@ const CalendarContainer = styled.div`
   flex-direction: column;
   max-width: 650px;
   width: 70%;
+  @media (max-width: 768px) {
+    width: 90%;
+  }
   margin: 50px;
   margin-top: 0px;
 `;
