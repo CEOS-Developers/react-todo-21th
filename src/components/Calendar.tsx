@@ -103,7 +103,13 @@ const Calendar = () => {
               {isToday(calendarDate) ? (
                 <Today>오늘</Today>
               ) : (
-                `${calendarDate}일`
+                <CalendarDate>
+                  <HighlightDate
+                    haveTodo={todoData[transDate(calendarDate, i)]?.length > 0}
+                  >
+                    {calendarDate}일
+                  </HighlightDate>
+                </CalendarDate>
               )}
               <TodoCount>
                 {countTodo(transDate(calendarDate, i))?.completeMessage ? (
@@ -134,6 +140,20 @@ const Calendar = () => {
 };
 
 export default Calendar;
+const CalendarDate = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  font-size: 1rem;
+`;
+const HighlightDate = styled.div<{ haveTodo: boolean }>`
+  font-size: 1rem;
+  width: 30px;
+  white-space: nowrap;
+  ${(props) =>
+    props.haveTodo
+      ? ` box-shadow: inset 0 -8px 0 hsla(31, 100.00%, 50.00%, 0.50)`
+      : ``};
+`;
 const CountMessage = styled.div`
   font-size: 0.8rem;
   margin-top: 2px;
