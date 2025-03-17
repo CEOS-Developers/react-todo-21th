@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TodoModal from "../Modal/TodoModal.tsx";
 import {
   CalendarContainer,
@@ -11,22 +11,30 @@ import CalendarDateContents from "./CalendarDateContents.tsx";
 
 const Calendar = () => {
   const date = new Date();
-
   const days = ["일", "월", "화", "수", "목", "금", "토"];
   const prevLastDate = new Date(date.getFullYear(), date.getMonth(), 0);
   const currentLastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
   const prevLastDay = prevLastDate.getDay();
-  const currentLastDay = currentLastDate.getDay();
-  const prevDates = Array.from(
+  const prevMonthDates = Array.from(
     { length: prevLastDay === 6 ? 0 : prevLastDay + 1 },
     (_, i) => prevLastDate.getDate() - prevLastDay + i
   );
-  const currentDates = Array.from(
+  const currentMonthDates = Array.from(
     { length: currentLastDate.getDate() },
     (_, i) => i + 1
   );
-  const nextDates = Array.from({ length: 6 - currentLastDay }, (_, i) => i + 1);
-  const calendarDates = [...prevDates, ...currentDates, ...nextDates];
+  const nextMonthDates = Array.from(
+    { length: 6 - currentLastDate.getDay() },
+    (_, i) => i + 1
+  );
+  const calendarDates = [
+    ...prevMonthDates,
+    ...currentMonthDates,
+    ...nextMonthDates,
+  ];
+  const firstDateIndex = prevMonthDates.length;
+  const lastDateIndex = prevMonthDates.length + currentMonthDates.length - 1;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState("");
   return (
@@ -45,9 +53,12 @@ const Calendar = () => {
             <CalendarDateContents
               key={i}
               i={i}
+              date={date}
               calendarDate={calendarDate}
               setIsModalOpen={setIsModalOpen}
               setSelectedDate={setSelectedDate}
+              firstDateIndex={firstDateIndex}
+              lastDateIndex={lastDateIndex}
             />
           ))}
         </CalendarDates>
