@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom";
-import { Modal, ModalContainer, OverLayout } from "./TodoModalStyle";
-import TodoModalContents from "./TodoModalContents";
+import { Modal, ModalContainer, OverLayout } from "./TodoModalStyle.ts";
+import TodoModalContents from "./TodoModalContents.tsx";
 
 interface TodoModalProps {
   isClose: () => void;

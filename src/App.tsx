@@ -1,5 +1,5 @@
 import "./App.css";
-import Calendar from "./components/Calendar/Calendar";
+import Calendar from "./components/TodoCalendar/Calendar.tsx";
 import styled from "styled-components";
 
 function App() {
@@ -9,7 +9,6 @@ function App() {
         <MainTitle>
           투두리스트<SubTitle>*모바일 금지 구역!!</SubTitle>
         </MainTitle>
-
         <Calendar />
       </Container>
     </>
@@ -32,7 +31,6 @@ const MainTitle = styled.h1`
   }
   font-family: "DungGeunMo";
   font-size: 2rem;
-  margin: 30px;
   margin-bottom: 15px;
   @media (max-width: 768px) {
     font-size: 1.5rem;
@@ -44,5 +42,6 @@ const Container = styled.div`
   height: 100vh;
   padding: 30px;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;

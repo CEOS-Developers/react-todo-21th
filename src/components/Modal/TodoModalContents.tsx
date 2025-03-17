@@ -8,7 +8,7 @@ import {
   ModalTitle,
   TodoItem,
 } from "./TodoModalStyle";
-import { loadData, saveData, TodoDataInfo } from "../../utils/storage";
+import { loadData, saveData, TodoDataInfo } from "../../utils/storage.tsx";
 interface TodoModalContentsProps {
   date: string;
 }
