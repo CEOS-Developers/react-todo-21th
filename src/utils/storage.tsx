@@ -1,5 +1,5 @@
 const StorageKey = "todoData";
-interface TodoDataItemInfo {
+export interface TodoDataItemInfo {
   content: string;
   isDone: boolean;
 }
@@ -21,8 +21,4 @@ const addData = (date: string, todoData: TodoDataInfo, contents: string) => {
   todoData[date].push({ content: contents, isDone: false });
   saveData(todoData);
 };
-const removeData = (date: string, todoData: TodoDataInfo, index: number) => {
-  todoData[date].splice(index, 1);
-  saveData(todoData);
-};
-export { saveData, loadData, addData, removeData };
+export { saveData, loadData, addData };
