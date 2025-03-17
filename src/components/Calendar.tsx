@@ -221,6 +221,9 @@ const CalendarContainer = styled.div`
 const Title = styled.div`
   margin-bottom: 20px;
   font-size: 1.5rem;
+  @media (max-width: 768px) {
+    font-size: 1.2rem;
+  }
 `;
 const Today = styled.span`
   background: rgb(255, 41, 41);

@@ -24,6 +24,7 @@ const TodoModal = ({ isClose, date }: TodoModalProps) => {
   };
 
   const handleAddTodo = () => {
+    console.log("다른거", todoDateList);
     const inputEl = document.getElementById("addDataInput") as HTMLInputElement;
     const contents = inputEl.value.trim();
     if (!contents) {
@@ -34,10 +35,13 @@ const TodoModal = ({ isClose, date }: TodoModalProps) => {
       ...prevState,
       { content: contents, isDone: false },
     ]);
+    console.log("세이브 전", todoData);
+
     saveData({
       ...todoData,
       [date]: [...todoDateList, { content: contents, isDone: false }],
     });
+    console.log("세이브 후", todoData);
     inputEl.value = "";
   };
 
@@ -47,6 +51,9 @@ const TodoModal = ({ isClose, date }: TodoModalProps) => {
     setTodoDateList(updatedDataList);
     saveData({ ...todoData, [date]: updatedDataList });
   };
+  useEffect(() => {
+    saveData({ ...todoData, [date]: todoDateList });
+  }, [todoDateList]);
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.isComposing) return;
@@ -102,7 +109,6 @@ const ModalTitle = styled.h3`
   margin-bottom: 10px;
 `;
 const AddButton = styled.button`
-  padding: 5px;
   width: 18%;
 `;
 const AddInput = styled.input`
@@ -113,11 +119,12 @@ const AddTodoContainer = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  height: 30px;
+  height: 27px;
 `;
 const Contents = styled.span`
   font-size: 1.2rem;
   margin-left: 10px;
+  margin-right: 35px;
 `;
 const TodoItem = styled.li`
   display: flex;
