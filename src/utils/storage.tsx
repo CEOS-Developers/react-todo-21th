@@ -14,11 +14,4 @@ const loadData = (): TodoDataInfo | {} => {
   const todoData = localStorage.getItem(StorageKey);
   return todoData ? JSON.parse(todoData) : {};
 };
-const addData = (date: string, todoData: TodoDataInfo, contents: string) => {
-  if (!todoData[date]) {
-    todoData[date] = [];
-  }
-  todoData[date].push({ content: contents, isDone: false });
-  saveData(todoData);
-};
-export { saveData, loadData, addData };
+export { saveData, loadData };
