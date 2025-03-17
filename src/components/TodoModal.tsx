@@ -11,7 +11,6 @@ const TodoModal = ({ isClose, date }: TodoModalProps) => {
   const modalRoot = document.getElementById("modal-root");
   if (!modalRoot) return null;
   const todoData: TodoDataInfo = loadData();
-  console.log(todoData);
   const [todoDateList, setTodoDateList] = useState(todoData[date] || []);
 
   const handleCheckTodo = (index: number) => {
@@ -64,41 +63,92 @@ const TodoModal = ({ isClose, date }: TodoModalProps) => {
   return ReactDOM.createPortal(
     <OverLayout onClick={isClose}>
       <Modal onClick={(e) => e.stopPropagation()}>
-        <div>{date}</div>
-        <div>할일</div>
-        <ul>
-          {todoDateList.map((todo, index) => (
-            <li key={index}>
-              <input
-                type="checkbox"
-                id={`todoChk-${index}`}
-                onChange={() => handleCheckTodo(index)}
-                checked={todo.isDone}
-              />
-              <span>{todo.content}</span>
-              <button onClick={() => handleDeleteTodo(index)}>삭제</button>
-            </li>
-          ))}
-        </ul>
-        <input type="text" id="addDataInput" placeholder="할 일을 입력하세요" />
-        <button onClick={handleAddTodo}>추가</button>
+        <ModalContainer>
+          <ModalTitle>{new Date(date).getDate()}일에 할 일</ModalTitle>
+
+          <ul>
+            {todoDateList.map((todo, index) => (
+              <TodoItem key={index}>
+                <input
+                  type="checkbox"
+                  id={`todoChk-${index}`}
+                  onChange={() => handleCheckTodo(index)}
+                  checked={todo.isDone}
+                />
+                <Contents>{todo.content}</Contents>
+                <DeleteButton onClick={() => handleDeleteTodo(index)}>
+                  삭제
+                </DeleteButton>
+              </TodoItem>
+            ))}
+          </ul>
+          <AddTodoContainer>
+            <AddInput
+              type="text"
+              id="addDataInput"
+              placeholder="할 일을 입력하세요"
+            />
+            <AddButton onClick={handleAddTodo}>추가</AddButton>
+          </AddTodoContainer>
+        </ModalContainer>
       </Modal>
     </OverLayout>,
     modalRoot
   );
 };
 export default TodoModal;
+const ModalTitle = styled.h3`
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+`;
+const AddButton = styled.button`
+  padding: 5px;
+  width: 18%;
+`;
+const AddInput = styled.input`
+  width: 80%;
+  padding: 5px;
+`;
+const AddTodoContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  height: 30px;
+`;
+const Contents = styled.span`
+  font-size: 1.2rem;
+  margin-left: 10px;
+`;
+const TodoItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+`;
+const DeleteButton = styled.button`
+  position: absolute;
+  right: 20px;
+  padding: 1.5px 4px;
+`;
+const ModalContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
 const Modal = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 300px;
-  height: 400px;
+  width: 400px;
   background-color: white;
   z-index: 1000;
   padding: 20px;
   box-sizing: border-box;
+  border-radius: 30px;
 `;
 const OverLayout = styled.div`
   position: fixed;

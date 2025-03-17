@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import CalendarDate from "./CalendarDate";
 import { loadData, TodoDataInfo } from "../utils/storage";
 import { useState } from "react";
 import TodoModal from "./TodoModal";
+import stamp from "/completeStamp.svg";
 
 const Calendar = () => {
   const date = new Date();
@@ -63,11 +63,21 @@ const Calendar = () => {
           isNotDoneCount++;
         }
       });
-      if (isNotDoneCount === 0) return `할 일 다함!`;
-      return `완료${isDoneCount}개 미완료${isNotDoneCount}개`;
+      if (isNotDoneCount === 0) return { completeMessage: `할 일 다함!` };
+      return {
+        incompleteMessage: `할 일 남음!`,
+        done: `완료${isDoneCount}개`,
+        notDone: `미완료${isNotDoneCount}개`,
+      };
     }
 
     return;
+  };
+  const isToday = (date: number) => {
+    return (
+      date === new Date().getDate() &&
+      currentMonth === new Date().getMonth() + 1
+    );
   };
   return (
     <>
@@ -90,8 +100,28 @@ const Calendar = () => {
                   setSelectedDate(transDate(calendarDate, i));
               }}
             >
-              {calendarDate}
-              <TodoCount>{countTodo(transDate(calendarDate, i))}</TodoCount>
+              {isToday(calendarDate) ? (
+                <Today>오늘</Today>
+              ) : (
+                `${calendarDate}일`
+              )}
+              <TodoCount>
+                {countTodo(transDate(calendarDate, i))?.completeMessage ? (
+                  <CompleteStamp src={stamp} alt="stamp" />
+                ) : (
+                  <>
+                    <MessageContainer>
+                      {countTodo(transDate(calendarDate, i))?.incompleteMessage}
+                    </MessageContainer>
+                    <CountMessage>
+                      {countTodo(transDate(calendarDate, i))?.done}
+                    </CountMessage>
+                    <CountMessage>
+                      {countTodo(transDate(calendarDate, i))?.notDone}
+                    </CountMessage>
+                  </>
+                )}
+              </TodoCount>
             </DateContainer>
           ))}
         </CalendarDates>
@@ -104,17 +134,37 @@ const Calendar = () => {
 };
 
 export default Calendar;
+const CountMessage = styled.div`
+  font-size: 0.8rem;
+  margin-top: 2px;
+  white-space: nowrap;
+`;
+const CompleteStamp = styled.img`
+  width: 60%;
+  margin: 5px;
+`;
+const MessageContainer = styled.div`
+  font-size: 1rem;
+  white-space: nowrap;
+  color: #505050;
+  text-align: right;
+  box-shadow: inset 0 -8px 0 hsla(52, 100%, 50%, 0.5);
+  margin-top: 3px;
+`;
 const TodoCount = styled.div`
   font-size: 15px;
   color: gray;
-  text-align: right;
-  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 const DateContainer = styled.div<{ condition: boolean }>`
   box-sizing: border-box;
   width: calc(100% / 7);
-  height: 50%;
+  padding: 7px;
+  text-align: right;
+  height: 90px;
   border: 0.5px solid #000;
   &:nth-child(7n + 1) {
     color: red;
@@ -122,25 +172,35 @@ const DateContainer = styled.div<{ condition: boolean }>`
   &:nth-child(7n) {
     color: rgb(68, 0, 255);
   }
-  ${(props) => (props.condition ? `color:pink !important;` : ``)}
+  ${(props) => (props.condition ? `color:rgb(222, 222, 222) !important;` : ``)}
 `;
 const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 800px;
-  width: 80%;
-  height: 80%;
+  max-width: 650px;
+  width: 70%;
   margin: 50px;
   margin-top: 0px;
 `;
 const Title = styled.div`
   margin-bottom: 20px;
+  font-size: 1.5rem;
+`;
+const Today = styled.span`
+  background: rgb(255, 41, 41);
+  white-space: nowrap;
+  color: white;
+  padding: 3px 5px;
+  font-size: 0.9rem;
+  border-radius: 80%;
+  cursor: pointer;
 `;
 const CalendarDays = styled.div`
   display: flex;
 `;
 const DayContainer = styled.div`
   width: calc(100% / 7);
+  font-size: 1.1rem;
   &:nth-child(7n + 1) {
     color: red;
   }
