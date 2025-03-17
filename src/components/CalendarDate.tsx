@@ -8,13 +8,12 @@ interface CalendarDateProps {
 }
 
 const CalendarDate = ({ date, condition }: CalendarDateProps) => {
-  const todoData: TodoDataInfo = loadData();
-  const todoDataCount =
-    todoData[date].length === 0 ? "" : `할일 (${todoData[date].length})개!`;
+  const todoData: TodoDataInfo | [] = loadData();
+
   return (
     <DateContainer condition={condition}>
       {date}
-      <TodoCount>{todoDataCount}</TodoCount>
+      <TodoCount></TodoCount>
     </DateContainer>
   );
 };

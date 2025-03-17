@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import CalendarDate from "./CalendarDate";
 import { loadData, TodoDataInfo } from "../utils/storage";
+import { useState } from "react";
+import TodoModal from "./TodoModal";
 
 const Calendar = () => {
   const date = new Date();
@@ -24,6 +26,8 @@ const Calendar = () => {
   const calendarDates = [...prevDates, ...currentDates, ...nextDates];
   const firstDateIndex = prevDates.length;
   const lastDateIndex = prevDates.length + currentDates.length - 1;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState("");
 
   const notCurrentMonthdate = (index: number) => {
     if (index < firstDateIndex || index > lastDateIndex) {
@@ -31,7 +35,7 @@ const Calendar = () => {
     }
     return false;
   };
-  const selectedDate = (calandarDate: number, index: number) => {
+  const transDate = (calandarDate: number, index: number) => {
     let year = currentYear;
     let month = currentMonth;
     if (index < firstDateIndex) {
@@ -49,7 +53,21 @@ const Calendar = () => {
   };
   const countTodo = (date: string) => {
     const isTodo = todoData[date] && todoData[date].length > 0;
-    return isTodo ? todoData[date].length : 0;
+    if (isTodo) {
+      let isDoneCount = 0;
+      let isNotDoneCount = 0;
+      todoData[date].map((todo) => {
+        if (todo.isDone) {
+          isDoneCount++;
+        } else {
+          isNotDoneCount++;
+        }
+      });
+      if (isNotDoneCount === 0) return `할 일 다함!`;
+      return `완료${isDoneCount}개 미완료${isNotDoneCount}개`;
+    }
+
+    return;
   };
   return (
     <>
@@ -64,20 +82,30 @@ const Calendar = () => {
         </CalendarDays>
         <CalendarDates>
           {calendarDates.map((calendarDate, i) => (
-            <DateContainer key={i} condition={notCurrentMonthdate(i)}>
+            <DateContainer
+              key={i}
+              condition={notCurrentMonthdate(i)}
+              onClick={() => {
+                setIsModalOpen(true),
+                  setSelectedDate(transDate(calendarDate, i));
+              }}
+            >
               {calendarDate}
-              <TodoCount>{countTodo(selectedDate(calendarDate, i))}</TodoCount>
+              <TodoCount>{countTodo(transDate(calendarDate, i))}</TodoCount>
             </DateContainer>
           ))}
         </CalendarDates>
       </CalendarContainer>
+      {isModalOpen && (
+        <TodoModal isClose={() => setIsModalOpen(false)} date={selectedDate} />
+      )}
     </>
   );
 };
 
 export default Calendar;
 const TodoCount = styled.div`
-  font-size: 10px;
+  font-size: 15px;
   color: gray;
   text-align: right;
   margin-top: 5px;
@@ -86,7 +114,7 @@ const TodoCount = styled.div`
 const DateContainer = styled.div<{ condition: boolean }>`
   box-sizing: border-box;
   width: calc(100% / 7);
-  height: 50px;
+  height: 50%;
   border: 0.5px solid #000;
   &:nth-child(7n + 1) {
     color: red;
@@ -99,8 +127,9 @@ const DateContainer = styled.div<{ condition: boolean }>`
 const CalendarContainer = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 600px;
+  max-width: 800px;
   width: 80%;
+  height: 80%;
   margin: 50px;
   margin-top: 0px;
 `;
