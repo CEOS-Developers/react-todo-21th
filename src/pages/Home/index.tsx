@@ -56,6 +56,7 @@ export default function Home() {
 	const handleDeleteButtonClick = (id: string) => {
 		const updatedAllTodos = allTodos.filter((todo) => String(todo.id) !== id);
 		setAllTodos(updatedAllTodos);
+		saveTodos(updatedAllTodos);
 	};
 
 	useEffect(() => {
