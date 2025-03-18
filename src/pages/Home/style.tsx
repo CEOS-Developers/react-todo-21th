@@ -33,8 +33,13 @@ export const Title = styled.h1`
 	font-weight: 700;
 
 	margin-right: auto;
-	margin-block: 2px;
+	margin-block: 8px;
 	color: darkslategrey;
+`;
+
+export const Date = styled.div`
+	color: darkslategrey;
+	font-size: large;
 `;
 
 export const TodoContainer = styled.div`

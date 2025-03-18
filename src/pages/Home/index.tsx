@@ -1,8 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { Button, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
+import { Button, Date, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
 import { TodoDto } from './dto';
 import Grass from '../../components/Grass';
+import { formattedDate } from '../../utils/formattedDate';
 
 export default function Home() {
 	const [allTodos, setAllTodos] = useState<TodoDto[]>([]);
@@ -55,6 +56,7 @@ export default function Home() {
 		<TodoWrapper>
 			<Header>
 				<Title>To Do List {doneTodoRatio}</Title>
+				<Date>{formattedDate}</Date>
 			</Header>
 
 			<TodoContainer>
