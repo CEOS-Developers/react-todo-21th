@@ -1,3 +1,6 @@
+import { ChangeEvent } from 'react';
 import { TodoDto } from '../../pages/Home/dto';
 
-export type TodoItemProps = TodoDto;
+export interface TodoItemProps extends TodoDto {
+	onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+}

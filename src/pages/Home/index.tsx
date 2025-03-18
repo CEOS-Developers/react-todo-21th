@@ -17,7 +17,9 @@ export default function Home() {
 
 	const handleAppendButtonClick = () => {
 		if (todo.trim()) {
+			const id = allTodos.length ? allTodos[allTodos.length - 1].id + 1 : 0;
 			const newTodo: TodoDto = {
+				id,
 				isDone: false,
 				content: todo,
 			};
@@ -30,6 +32,17 @@ export default function Home() {
 		if (e.key === 'Enter' && !e.nativeEvent.isComposing) {
 			handleAppendButtonClick();
 		}
+	};
+
+	const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const updatedAllTodos = allTodos.map((todo) => {
+			if (String(todo.id) === e.target.id) {
+				return { ...todo, isDone: e.target.checked };
+			}
+			return todo;
+		});
+
+		setAllTodos(updatedAllTodos);
 	};
 
 	return (
@@ -54,7 +67,7 @@ export default function Home() {
 
 					<TodoList>
 						{allTodos.map((todo) => (
-							<TodoItem key={todo.content} {...todo} />
+							<TodoItem key={todo.id} onChange={handleCheckboxChange} {...todo} />
 						))}
 					</TodoList>
 				</div>
