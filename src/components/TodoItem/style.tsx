@@ -3,6 +3,8 @@ import { CommonButton } from '@/styles/CommonStyles';
 import { memo } from 'react';
 
 export const TodoItemLayout = styled.li`
+	position: relative;
+
 	width: 100%;
 	padding: 5px 8px;
 	border-bottom: 1.5px solid darkslategrey;
@@ -35,10 +37,19 @@ export const Checkbox = styled.input`
 export const TodoContent = memo(styled.label<{ $isDone: boolean }>`
 	padding: 7px 0;
 	cursor: pointer;
+
+	max-height: 30px;
 	white-space: nowrap;
-	overflow: scroll;
-	scrollbar-width: none;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: max-height 1.5s;
+
 	${({ $isDone }) => ($isDone ? 'color: rgb(150, 150, 150);	text-decoration: line-through;' : '')}
+
+	&:hover {
+		white-space: pre-line;
+		max-height: 300px;
+	}
 `);
 
 export const Button = memo(styled(CommonButton)``);
