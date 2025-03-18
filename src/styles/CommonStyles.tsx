@@ -8,4 +8,10 @@ export const CommonButton = styled.button`
 	border: none;
 	border-radius: 2px;
 	background-color: rgb(233, 233, 233);
+
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: rgb(245, 245, 245);
+	}
 `;

@@ -1,6 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { Button, Today, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
+import { Button, Today, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoWrapper } from './style';
 import { TodoDto } from './dto';
 import Grass from '../../components/Grass';
 import { saveTodos } from '../../utils/saveTodos';
@@ -87,7 +87,7 @@ export default function Home() {
 						</Button>
 					</TodoInputBox>
 
-					<TodoList>
+					<ul>
 						{allTodos.map((todo) => (
 							<TodoItem
 								key={todo.id}
@@ -96,7 +96,7 @@ export default function Home() {
 								{...todo}
 							/>
 						))}
-					</TodoList>
+					</ul>
 				</div>
 				<Grass />
 			</TodoContainer>

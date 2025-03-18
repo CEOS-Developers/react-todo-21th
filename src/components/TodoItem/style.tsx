@@ -3,13 +3,19 @@ import { CommonButton } from '../../styles/CommonStyles';
 
 export const TodoItemLayout = styled.li`
 	width: 100%;
-	padding: 5px 0;
+	padding: 5px 8px;
 	border-bottom: 1.5px solid darkslategrey;
 
 	display: grid;
 	grid-template-columns: auto 1fr 50px;
 	gap: 4px;
 	align-items: center;
+
+	transition: background-color 0.2s;
+
+	&:hover {
+		background-color: rgb(245, 245, 245);
+	}
 `;
 
 export const Checkbox = styled.input`

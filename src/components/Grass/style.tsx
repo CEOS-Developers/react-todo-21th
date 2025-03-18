@@ -23,4 +23,9 @@ export const GrassItem = styled.div<{ $hasDoneTodo: boolean }>`
 	margin: auto;
 	background-color: ${({ $hasDoneTodo }) => ($hasDoneTodo ? 'lightpink' : 'rgb(233, 233, 233)')};
 	border-radius: 2px;
+	transition: opacity 0.2s;
+
+	&:hover {
+		opacity: 0.5;
+	}
 `;
