@@ -7,7 +7,7 @@ export default function TodoItem({ id, isDone, content, onChange, onClickDeleteB
 	return (
 		<TodoItemLayout>
 			<Checkbox onChange={onChange} checked={isDone} type="checkbox" id={todoId} />
-			<TodoContent htmlFor={todoId} $isDone={false}>
+			<TodoContent htmlFor={todoId} $isDone={isDone}>
 				{content}
 			</TodoContent>
 			<Button onClick={() => onClickDeleteButton(todoId)}>삭제</Button>
