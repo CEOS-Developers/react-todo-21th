@@ -1,17 +1,5 @@
-import {
-	Button,
-	Checkbox,
-	Header,
-	Side,
-	Title,
-	TodoContainer,
-	TodoContent,
-	TodoInput,
-	TodoInputBox,
-	TodoItem,
-	TodoList,
-	TodoWrapper,
-} from './style';
+import TodoItem from '../../components/TodoItem';
+import { Button, Header, Side, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
 
 export default function Home() {
 	return (
@@ -26,25 +14,13 @@ export default function Home() {
 						<TodoInput />
 						<Button>추가</Button>
 					</TodoInputBox>
+
 					<TodoList>
-						<TodoItem>
-							<Checkbox type="checkbox" />
-							<TodoContent $isDone={false}>가나다라</TodoContent>
-							<Button>삭제</Button>
-						</TodoItem>
-						<TodoItem>
-							<Checkbox type="checkbox" />
-							<TodoContent $isDone={false}>가나다라</TodoContent>
-							<Button>삭제</Button>
-						</TodoItem>
-						<TodoItem>
-							<Checkbox type="checkbox" />
-							<TodoContent $isDone={false}>가나다라</TodoContent>
-							<Button>삭제</Button>
-						</TodoItem>
+						{[0, 1, 2].map((i) => (
+							<TodoItem key={i} />
+						))}
 					</TodoList>
 				</div>
-
 				<Side />
 			</TodoContainer>
 		</TodoWrapper>
