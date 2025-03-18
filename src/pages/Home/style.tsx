@@ -37,7 +37,7 @@ export const Title = styled.h1`
 	color: darkslategrey;
 `;
 
-export const Date = styled.div`
+export const Today = styled.div`
 	color: darkslategrey;
 	font-size: large;
 `;

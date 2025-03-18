@@ -1,6 +1,6 @@
 import { TodoDto } from '../pages/Home/dto';
 import { createMonthlyCalendar } from './createGrassCalendar';
-import { options } from './formattedDate';
+import { formatDate } from './formatDate';
 
 export const loadAllTodos = (calendar: string[]) => {
 	if (new Date().getDate() === 1) {
@@ -13,9 +13,7 @@ export const loadAllTodos = (calendar: string[]) => {
 			const data = localStorage.getItem(date);
 			const todos: TodoDto[] = JSON.parse(data || '[]');
 			const hasDoneTodo =
-				date === new Date().toLocaleDateString('ko-KR', options)
-					? false
-					: !!todos.filter((todo) => todo.isDone === true).length;
+				date === formatDate(new Date()) ? false : !!todos.filter((todo) => todo.isDone === true).length;
 
 			return {
 				date,

@@ -1,15 +1,16 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { Button, Date, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
+import { Button, Today, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
 import { TodoDto } from './dto';
 import Grass from '../../components/Grass';
-import { formattedDate } from '../../utils/formattedDate';
 import { saveTodos } from '../../utils/saveTodos';
 import { loadTodayTodos } from '../../utils/loadTodayTodos';
+import { formatDate } from '../../utils/formatDate';
 
 export default function Home() {
 	const [allTodos, setAllTodos] = useState<TodoDto[]>([]);
 	const [todo, setTodo] = useState('');
+	const formattedDate = formatDate(new Date());
 
 	const totalTodoCount = allTodos.length;
 	const doneTodoCount = allTodos.filter((todo) => todo.isDone).length;
@@ -68,7 +69,7 @@ export default function Home() {
 		<TodoWrapper>
 			<Header>
 				<Title>To Do List {doneTodoRatio}</Title>
-				<Date>{formattedDate}</Date>
+				<Today>{formattedDate}</Today>
 			</Header>
 
 			<TodoContainer>

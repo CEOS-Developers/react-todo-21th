@@ -1,8 +1,8 @@
-import { formattedDate } from './formattedDate';
+import { formatDate } from './formatDate';
 
 export const loadTodayTodos = () => {
 	try {
-		const data = localStorage.getItem(formattedDate);
+		const data = localStorage.getItem(formatDate(new Date()));
 
 		if (!data) {
 			return [];

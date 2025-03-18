@@ -1,4 +1,4 @@
-import { options } from './formattedDate';
+import { formatDate } from './formatDate';
 import { loadAllTodos } from './loadAllTodos';
 
 // 두 달 전 1일부터 오늘까지의 날짜를 담은 배열 생성
@@ -27,7 +27,5 @@ export const createMonthlyCalendar = (date: Date) => {
 	const month = date.getMonth();
 	const numberOfDays = date.getMonth() === new Date().getMonth() ? new Date().getDate() : date.getDate();
 
-	return new Array(numberOfDays)
-		.fill(null)
-		.map((_, i) => new Date(year, month, i + 1).toLocaleDateString('ko-KR', options));
+	return new Array(numberOfDays).fill(null).map((_, i) => formatDate(new Date(year, month, i + 1)));
 };
