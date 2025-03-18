@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CommonButton } from '@/styles/CommonStyles';
+import { memo } from 'react';
 
 export const TodoWrapper = styled.div`
 	background-color: white;
@@ -37,10 +38,10 @@ export const Title = styled.h1`
 	color: darkslategrey;
 `;
 
-export const Today = styled.div`
+export const Today = memo(styled.div`
 	color: darkslategrey;
 	font-size: large;
-`;
+`);
 
 export const TodoContainer = styled.div`
 	position: relative;

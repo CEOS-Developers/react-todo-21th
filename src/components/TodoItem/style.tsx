@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CommonButton } from '@/styles/CommonStyles';
+import { memo } from 'react';
 
 export const TodoItemLayout = styled.li`
 	width: 100%;
@@ -31,13 +32,13 @@ export const Checkbox = styled.input`
 	}
 `;
 
-export const TodoContent = styled.label<{ $isDone: boolean }>`
+export const TodoContent = memo(styled.label<{ $isDone: boolean }>`
 	padding: 7px 0;
 	cursor: pointer;
 	white-space: nowrap;
 	overflow: scroll;
 	scrollbar-width: none;
 	${({ $isDone }) => ($isDone ? 'color: rgb(150, 150, 150);	text-decoration: line-through;' : '')}
-`;
+`);
 
-export const Button = styled(CommonButton)``;
+export const Button = memo(styled(CommonButton)``);

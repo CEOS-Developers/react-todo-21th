@@ -1,8 +1,6 @@
-import { ChangeEvent, useEffect, useState } from 'react';
-
+import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import TodoItem from '@/components/TodoItem';
 import Grass from '@/components/Grass';
-
 import { saveTodos } from '@/utils/saveTodos';
 import { loadTodayTodos } from '@/utils/loadTodayTodos';
 import { formatDate } from '@/utils/formatDate';
@@ -44,23 +42,29 @@ export default function Home() {
 		}
 	};
 
-	const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const updatedAllTodos = allTodos.map((todo) => {
-			if (String(todo.id) === e.target.id) {
-				return { ...todo, isDone: e.target.checked };
-			}
-			return todo;
-		});
+	const handleCheckboxChange = useCallback(
+		(e: ChangeEvent<HTMLInputElement>) => {
+			const updatedAllTodos = allTodos.map((todo) => {
+				if (String(todo.id) === e.target.id) {
+					return { ...todo, isDone: e.target.checked };
+				}
+				return todo;
+			});
 
-		setAllTodos(updatedAllTodos);
-		saveTodos(updatedAllTodos);
-	};
+			setAllTodos(updatedAllTodos);
+			saveTodos(updatedAllTodos);
+		},
+		[allTodos],
+	);
 
-	const handleDeleteButtonClick = (id: string) => {
-		const updatedAllTodos = allTodos.filter((todo) => String(todo.id) !== id);
-		setAllTodos(updatedAllTodos);
-		saveTodos(updatedAllTodos);
-	};
+	const handleDeleteButtonClick = useCallback(
+		(id: string) => {
+			const updatedAllTodos = allTodos.filter((todo) => String(todo.id) !== id);
+			setAllTodos(updatedAllTodos);
+			saveTodos(updatedAllTodos);
+		},
+		[allTodos],
+	);
 
 	useEffect(() => {
 		const loadedTodos = loadTodayTodos();

@@ -1,8 +1,9 @@
 import { createGrassCalendar } from '@/utils/createGrassCalendar';
 import { GrassItem, GrassLayout, GrassWrapper } from './style';
+import { memo, useMemo } from 'react';
 
-export default function Grass() {
-	const calendar = createGrassCalendar();
+export default memo(function Grass() {
+	const calendar = useMemo(() => createGrassCalendar(), []);
 
 	return (
 		<GrassWrapper>
@@ -13,4 +14,4 @@ export default function Grass() {
 			</GrassLayout>
 		</GrassWrapper>
 	);
-}
+});
