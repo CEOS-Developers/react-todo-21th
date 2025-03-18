@@ -4,8 +4,9 @@ export const theme = {
     lighter: '#d9eafd',
     darker: '#bcccdc',
     darkest: '#9aa6b2',
-    shadow: '#9aa6b230',
     point: '#ff748b',
+    subRed: '#ff307c',
+    subBlue: '#3098ff',
     lightStroke: '#dedede',
     darkStroke: '#b6b6b6',
     textGray: '#797979',
@@ -14,4 +15,5 @@ export const theme = {
     main: 'Pretendard, sans-serif',
     heading: 'system-ui, sans-serif',
   },
+  shadow: '0 0 8px #9aa6b230',
 }
