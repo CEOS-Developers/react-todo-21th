@@ -34,8 +34,9 @@ const CalendarDateContents = ({
   const currentMonth = date.getMonth() + 1;
   const todoData: TodoDataInfo = loadData();
 
-  const count = countTodo(calendarDate, i);
+  const count = countTodo(calendarDate, i); //todoData[date]에 할 일이 있는지 확인하고 있으면 할 일 개수 반환
 
+  //다른 달의 날짜인지 확인
   const isOtherMonthDate = (index: number) => {
     if (index < firstDateIndex || index > lastDateIndex) {
       return true;
@@ -43,6 +44,7 @@ const CalendarDateContents = ({
     return false;
   };
 
+  //날짜 변환 함수(미리 선언)
   function transDate(calandarDate: number, index: number) {
     let year = currentYear;
     let month = currentMonth;
@@ -60,6 +62,7 @@ const CalendarDateContents = ({
     return `${year}/${month}/${calandarDate}`;
   }
 
+  //할 일 개수 세기 함수(미리 선언)
   function countTodo(calendarDate: number, index: number) {
     const date = transDate(calendarDate, index);
     const isTodo = todoData[date] && todoData[date].length > 0;
@@ -84,10 +87,12 @@ const CalendarDateContents = ({
     return;
   }
 
-  const isToday = (date: number) => {
+  //오늘 날짜인지 확인
+  const isToday = () => {
     return (
-      date === new Date().getDate() &&
-      currentMonth === new Date().getMonth() + 1
+      calendarDate === date.getDate() &&
+      i >= firstDateIndex &&
+      i <= lastDateIndex
     );
   };
 
@@ -100,7 +105,7 @@ const CalendarDateContents = ({
           setIsModalOpen(true), setSelectedDate(transDate(calendarDate, i));
         }}
       >
-        {isToday(calendarDate) ? (
+        {isToday() ? (
           <Today>오늘</Today>
         ) : (
           <CalendarDate>
@@ -112,6 +117,7 @@ const CalendarDateContents = ({
           </CalendarDate>
         )}
         <TodoCount>
+          {/*count에 따라 보이는 다른 메시지*/}
           {count?.completeMessage ? (
             <CompleteStamp src={stamp} alt="stamp" />
           ) : (

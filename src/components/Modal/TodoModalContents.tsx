@@ -12,10 +12,11 @@ import { loadData, saveData, TodoDataInfo } from "../../utils/storage.tsx";
 interface TodoModalContentsProps {
   date: string;
 }
-const TodoModalContents = ({ date }: TodoModalContentsProps) => {
-  const todoData: TodoDataInfo = loadData();
-  const [todoDateList, setTodoDateList] = useState(todoData[date] || []);
 
+const TodoModalContents = ({ date }: TodoModalContentsProps) => {
+  const todoData: TodoDataInfo = loadData(); //로컬 스토리지에서 데이터 불러오기
+  const [todoDateList, setTodoDateList] = useState(todoData[date] || []); //할 일 데이터 상태 관리
+  //할 일 체크 이벤트 핸들러
   const handleCheckTodo = (index: number) => {
     const updatedDataList = [...todoDateList];
     updatedDataList[index] = {
@@ -26,6 +27,7 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
     saveData({ ...todoData, [date]: updatedDataList });
   };
 
+  //할 일 추가 이벤트 핸들러
   const handleAddTodo = () => {
     const inputEl = document.getElementById("addDataInput") as HTMLInputElement;
     const contents = inputEl.value.trim();
@@ -44,7 +46,7 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
     });
     inputEl.value = "";
   };
-
+  //할 일 삭제 이벤트 핸들러
   const handleDeleteTodo = (index: number) => {
     const updatedDataList = [...todoDateList];
     updatedDataList.splice(index, 1);
@@ -52,11 +54,15 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
     saveData({ ...todoData, [date]: updatedDataList });
   };
 
+  //할 일 데이터 변경 시 로컬 스토리지에 저장
   useEffect(() => {
     saveData({ ...todoData, [date]: todoDateList });
   }, [todoDateList]);
+
+  //엔터키 입력 시 할 일 추가
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      //한글 입력 시 이벤트 무시 (중복 입력 방지)
       if (e.isComposing) return;
       if (e.key === "Enter") {
         e.preventDefault();
@@ -71,7 +77,6 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
   return (
     <>
       <ModalTitle>{new Date(date).getDate()}일에 할 일</ModalTitle>
-
       <ul>
         {todoDateList.map((todo, index) => (
           <TodoItem key={index}>

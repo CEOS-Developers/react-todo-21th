@@ -10,8 +10,9 @@ import {
 import CalendarDateContents from "./CalendarDateContents.tsx";
 
 const Calendar = () => {
-  const date = new Date();
-  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  const date = new Date(); //현재 날짜
+  const days = ["일", "월", "화", "수", "목", "금", "토"]; //요일 배열
+  //캘린더에 보이는 달 날짜 배열 생성
   const prevLastDate = new Date(date.getFullYear(), date.getMonth(), 0);
   const currentLastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
   const prevLastDay = prevLastDate.getDay();
@@ -32,11 +33,13 @@ const Calendar = () => {
     ...currentMonthDates,
     ...nextMonthDates,
   ];
+
+  //이전 달, 다음 달 날짜의 인덱스 구하기
   const firstDateIndex = prevMonthDates.length;
   const lastDateIndex = prevMonthDates.length + currentMonthDates.length - 1;
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false); //모달 상태 관리
+  const [selectedDate, setSelectedDate] = useState(""); //선택한 날짜 상태 관리
   return (
     <>
       <CalendarContainer>
