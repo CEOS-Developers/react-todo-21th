@@ -67,15 +67,13 @@ const CalendarDateContents = ({
     const date = transDate(calendarDate, index);
     const isTodo = todoData[date] && todoData[date].length > 0;
     if (isTodo) {
-      let isDoneCount = 0;
-      let isNotDoneCount = 0;
-      todoData[date].map((todo) => {
-        if (todo.isDone) {
-          isDoneCount++;
-        } else {
-          isNotDoneCount++;
-        }
-      });
+      const { isDoneCount, isNotDoneCount } = todoData[date].reduce(
+        (acc, todo) => {
+          todo.isDone ? acc.isDoneCount++ : acc.isNotDoneCount++;
+          return acc;
+        },
+        { isDoneCount: 0, isNotDoneCount: 0 }
+      );
       if (isNotDoneCount === 0) return { completeMessage: `할 일 다함!` };
       return {
         incompleteMessage: `할 일 남음!`,

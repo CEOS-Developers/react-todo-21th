@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   AddButton,
   AddInput,
@@ -16,6 +16,7 @@ interface TodoModalContentsProps {
 const TodoModalContents = ({ date }: TodoModalContentsProps) => {
   const todoData: TodoDataInfo = loadData(); //로컬 스토리지에서 데이터 불러오기
   const [todoDateList, setTodoDateList] = useState(todoData[date] || []); //할 일 데이터 상태 관리
+
   //할 일 체크 이벤트 핸들러
   const handleCheckTodo = (index: number) => {
     const updatedDataList = [...todoDateList];
@@ -27,8 +28,16 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
     saveData({ ...todoData, [date]: updatedDataList });
   };
 
+  //할 일 삭제 이벤트 핸들러
+  const handleDeleteTodo = (index: number) => {
+    const updatedDataList = [...todoDateList];
+    updatedDataList.splice(index, 1);
+    setTodoDateList(updatedDataList);
+    saveData({ ...todoData, [date]: updatedDataList });
+  };
+
   //할 일 추가 이벤트 핸들러
-  const handleAddTodo = () => {
+  const handleAddTodo = useCallback(() => {
     const inputEl = document.getElementById("addDataInput") as HTMLInputElement;
     const contents = inputEl.value.trim();
     if (!contents) {
@@ -45,38 +54,35 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
       [date]: [...todoDateList, { content: contents, isDone: false }],
     });
     inputEl.value = "";
-  };
-  //할 일 삭제 이벤트 핸들러
-  const handleDeleteTodo = (index: number) => {
-    const updatedDataList = [...todoDateList];
-    updatedDataList.splice(index, 1);
-    setTodoDateList(updatedDataList);
-    saveData({ ...todoData, [date]: updatedDataList });
-  };
-
-  //할 일 데이터 변경 시 로컬 스토리지에 저장
-  useEffect(() => {
-    saveData({ ...todoData, [date]: todoDateList });
-  }, [todoDateList]);
+  }, [todoData, date, todoDateList]);
 
   //엔터키 입력 시 할 일 추가
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
       //한글 입력 시 이벤트 무시 (중복 입력 방지)
       if (e.isComposing) return;
       if (e.key === "Enter") {
         e.preventDefault();
         handleAddTodo();
       }
-    };
+    },
+    [handleAddTodo]
+  );
+  useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [handleKeyDown]);
+
+  //할 일 데이터 변경 시 로컬 스토리지에 저장
+  useEffect(() => {
+    saveData({ ...todoData, [date]: todoDateList });
+  }, [todoDateList]);
   return (
     <>
       <ModalTitle>{new Date(date).getDate()}일에 할 일</ModalTitle>
+
       <ul>
         {todoDateList.map((todo, index) => (
           <TodoItem key={index}>

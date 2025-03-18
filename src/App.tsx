@@ -7,7 +7,7 @@ function App() {
     <>
       <Container>
         <MainTitle>
-          투두리스트<SubTitle>*모바일 금지 구역!!</SubTitle>
+          투두리스트<SubTitle>*모바일 금지 구역!!(그냥...)</SubTitle>
         </MainTitle>
         <Calendar />
       </Container>
