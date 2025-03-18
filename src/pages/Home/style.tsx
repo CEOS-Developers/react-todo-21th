@@ -74,7 +74,11 @@ export const TodoInput = styled.input`
 	background-color: transparent;
 `;
 
-export const Button = styled(CommonButton)``;
+export const Button = styled(CommonButton)`
+	&:disabled {
+		cursor: default;
+	}
+`;
 
 export const TodoList = styled.ul`
 	padding: 0 8px;
