@@ -3,7 +3,6 @@ import { CommonButton } from '../../styles/CommonStyles';
 
 export const TodoItemLayout = styled.li`
 	width: 100%;
-	height: 31px;
 	padding: 5px 0;
 	border-bottom: 1.5px solid darkslategrey;
 

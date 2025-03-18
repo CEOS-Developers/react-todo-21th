@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   * {
-    box-sizing: content-box;
+    box-sizing: border-box;
   }
   
   html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
@@ -26,8 +26,6 @@ const GlobalStyles = createGlobalStyle`
     line-height: 1;
     font-family: 'Pretendard Variable', sans-serif;
     background-color: rgb(240, 245, 240);
-    display: flex;
-    justify-content: center;
   }
   
   ol, ul {
