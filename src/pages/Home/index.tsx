@@ -1,9 +1,11 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
 import { Button, Date, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
 import { TodoDto } from './dto';
 import Grass from '../../components/Grass';
 import { formattedDate } from '../../utils/formattedDate';
+import { saveTodos } from '../../utils/saveTodos';
+import { loadTodayTodos } from '../../utils/loadTodayTodos';
 
 export default function Home() {
 	const [allTodos, setAllTodos] = useState<TodoDto[]>([]);
@@ -22,10 +24,12 @@ export default function Home() {
 			const id = allTodos.length ? allTodos[allTodos.length - 1].id + 1 : 0;
 			const newTodo: TodoDto = {
 				id,
+				date: formattedDate,
 				isDone: false,
 				content: todo,
 			};
 			setAllTodos([...allTodos, newTodo]);
+			saveTodos([...allTodos, newTodo]);
 			setTodo('');
 		}
 	};
@@ -45,12 +49,20 @@ export default function Home() {
 		});
 
 		setAllTodos(updatedAllTodos);
+		saveTodos(updatedAllTodos);
 	};
 
 	const handleDeleteButtonClick = (id: string) => {
 		const updatedAllTodos = allTodos.filter((todo) => String(todo.id) !== id);
 		setAllTodos(updatedAllTodos);
 	};
+
+	useEffect(() => {
+		const loadedTodos = loadTodayTodos();
+		if (loadedTodos.length) {
+			setAllTodos(loadedTodos);
+		}
+	}, []);
 
 	return (
 		<TodoWrapper>
