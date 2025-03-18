@@ -2,9 +2,9 @@ import { options } from './formattedDate';
 
 // 두 달 전 1일부터 오늘까지의 날짜를 담은 배열 생성
 export const createGrassCalendar = () => {
-	const twoMonthAgo = new Date();
-	twoMonthAgo.setMonth(twoMonthAgo.getMonth() - 1);
-	twoMonthAgo.setDate(0);
+	const twoMonthsAgo = new Date();
+	twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 1);
+	twoMonthsAgo.setDate(0);
 
 	const aMonthAgo = new Date();
 	aMonthAgo.setDate(0);
@@ -12,7 +12,7 @@ export const createGrassCalendar = () => {
 	const today = new Date();
 
 	const calendar = [
-		...createMonthlyCalendar(twoMonthAgo),
+		...createMonthlyCalendar(twoMonthsAgo),
 		...createMonthlyCalendar(aMonthAgo),
 		...createMonthlyCalendar(today),
 	];
