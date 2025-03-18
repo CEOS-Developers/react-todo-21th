@@ -1,11 +1,14 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import TodoItem from '../../components/TodoItem';
+
+import TodoItem from '@/components/TodoItem';
+import Grass from '@/components/Grass';
+
+import { saveTodos } from '@/utils/saveTodos';
+import { loadTodayTodos } from '@/utils/loadTodayTodos';
+import { formatDate } from '@/utils/formatDate';
+
+import type { TodoDto } from './dto';
 import { Button, Today, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoWrapper } from './style';
-import { TodoDto } from './dto';
-import Grass from '../../components/Grass';
-import { saveTodos } from '../../utils/saveTodos';
-import { loadTodayTodos } from '../../utils/loadTodayTodos';
-import { formatDate } from '../../utils/formatDate';
 
 export default function Home() {
 	const [allTodos, setAllTodos] = useState<TodoDto[]>([]);

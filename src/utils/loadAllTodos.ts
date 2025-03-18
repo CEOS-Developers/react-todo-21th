@@ -1,6 +1,6 @@
-import { TodoDto } from '../pages/Home/dto';
 import { createMonthlyCalendar } from './createGrassCalendar';
 import { formatDate } from './formatDate';
+import type { TodoDto } from '@/pages/Home/dto';
 
 export const loadAllTodos = (calendar: string[]) => {
 	if (new Date().getDate() === 1) {

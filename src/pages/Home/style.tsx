@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { CommonButton } from '../../styles/CommonStyles';
+import { CommonButton } from '@/styles/CommonStyles';
 
 export const TodoWrapper = styled.div`
 	background-color: white;

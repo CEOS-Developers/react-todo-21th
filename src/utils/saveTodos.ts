@@ -1,5 +1,5 @@
-import { TodoDto } from '../pages/Home/dto';
 import { formatDate } from './formatDate';
+import type { TodoDto } from '@/pages/Home/dto';
 
 export const saveTodos = (todos: TodoDto[]) => {
 	try {

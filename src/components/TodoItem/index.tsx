@@ -1,4 +1,4 @@
-import { TodoItemProps } from './dto';
+import type { TodoItemProps } from './dto';
 import { Button, Checkbox, TodoContent, TodoItemLayout } from './style';
 
 export default function TodoItem({ id, isDone, content, onChange, onClickDeleteButton }: TodoItemProps) {
