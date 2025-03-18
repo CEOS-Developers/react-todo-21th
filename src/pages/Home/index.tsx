@@ -45,6 +45,11 @@ export default function Home() {
 		setAllTodos(updatedAllTodos);
 	};
 
+	const handleDeleteButtonClick = (id: string) => {
+		const updatedAllTodos = allTodos.filter((todo) => String(todo.id) !== id);
+		setAllTodos(updatedAllTodos);
+	};
+
 	return (
 		<TodoWrapper>
 			<Header>
@@ -67,7 +72,12 @@ export default function Home() {
 
 					<TodoList>
 						{allTodos.map((todo) => (
-							<TodoItem key={todo.id} onChange={handleCheckboxChange} {...todo} />
+							<TodoItem
+								key={todo.id}
+								onChange={handleCheckboxChange}
+								onClickDeleteButton={handleDeleteButtonClick}
+								{...todo}
+							/>
 						))}
 					</TodoList>
 				</div>

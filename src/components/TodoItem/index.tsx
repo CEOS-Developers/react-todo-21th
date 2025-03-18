@@ -1,7 +1,7 @@
 import { TodoItemProps } from './dto';
 import { Button, Checkbox, TodoContent, TodoItemLayout } from './style';
 
-export default function TodoItem({ id, isDone, content, onChange }: TodoItemProps) {
+export default function TodoItem({ id, isDone, content, onChange, onClickDeleteButton }: TodoItemProps) {
 	const todoId = String(id);
 	return (
 		<TodoItemLayout>
@@ -9,7 +9,7 @@ export default function TodoItem({ id, isDone, content, onChange }: TodoItemProp
 			<TodoContent htmlFor={todoId} $isDone={false}>
 				{content}
 			</TodoContent>
-			<Button>삭제</Button>
+			<Button onClick={() => onClickDeleteButton(todoId)}>삭제</Button>
 		</TodoItemLayout>
 	);
 }
