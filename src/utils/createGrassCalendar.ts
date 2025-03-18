@@ -1,4 +1,5 @@
 import { options } from './formattedDate';
+import { loadAllTodos } from './loadAllTodos';
 
 // 두 달 전 1일부터 오늘까지의 날짜를 담은 배열 생성
 export const createGrassCalendar = () => {
@@ -17,10 +18,10 @@ export const createGrassCalendar = () => {
 		...createMonthlyCalendar(today),
 	];
 
-	return calendar;
+	return loadAllTodos(calendar) || [];
 };
 
-// 한 달 치 날짜를 담은 배열 생성
+// 당월 1일부터 마지막 날 또는 오늘까지의 날짜를 담은 배열 생성
 export const createMonthlyCalendar = (date: Date) => {
 	const year = date.getFullYear();
 	const month = date.getMonth();

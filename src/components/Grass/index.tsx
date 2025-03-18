@@ -8,7 +8,7 @@ export default function Grass() {
 		<GrassWrapper>
 			<GrassLayout>
 				{calendar.map((date) => (
-					<GrassItem title={date} key={date} />
+					<GrassItem $hasDoneTodo={date.hasDoneTodo} title={date.date} key={date.date} />
 				))}
 			</GrassLayout>
 		</GrassWrapper>

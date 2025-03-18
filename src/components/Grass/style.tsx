@@ -17,10 +17,10 @@ export const GrassLayout = styled.div`
 	height: fit-content;
 `;
 
-export const GrassItem = styled.div`
+export const GrassItem = styled.div<{ $hasDoneTodo: boolean }>`
 	width: 100%;
 	aspect-ratio: 1;
 	margin: auto;
-	background-color: rgb(233, 233, 233);
+	background-color: ${({ $hasDoneTodo }) => ($hasDoneTodo ? 'lightpink' : 'rgb(233, 233, 233)')};
 	border-radius: 2px;
 `;
