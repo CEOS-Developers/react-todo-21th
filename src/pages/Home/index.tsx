@@ -1,7 +1,8 @@
 import { ChangeEvent, useState } from 'react';
 import TodoItem from '../../components/TodoItem';
-import { Button, Header, Side, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
+import { Button, Header, Title, TodoContainer, TodoInput, TodoInputBox, TodoList, TodoWrapper } from './style';
 import { TodoDto } from './dto';
+import Grass from '../../components/Grass';
 
 export default function Home() {
 	const [allTodos, setAllTodos] = useState<TodoDto[]>([]);
@@ -81,7 +82,7 @@ export default function Home() {
 						))}
 					</TodoList>
 				</div>
-				<Side />
+				<Grass />
 			</TodoContainer>
 		</TodoWrapper>
 	);

@@ -47,7 +47,7 @@ export const TodoContainer = styled.div`
 	scrollbar-width: none;
 
 	@media (min-width: 640px) {
-		grid-template-columns: 1fr 150px;
+		grid-template-columns: minmax(400px, 1fr) minmax(100px, 150px);
 	}
 `;
 
@@ -83,12 +83,4 @@ export const Button = styled(CommonButton)`
 export const TodoList = styled.ul`
 	padding: 0 8px;
 	color: black;
-`;
-
-export const Side = styled.div`
-	border-left: 2px solid darkslategrey;
-
-	@media (max-width: 639px) {
-		display: none;
-	}
 `;
