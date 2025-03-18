@@ -89,7 +89,7 @@ export default function Home() {
 							onKeyDown={handleEnterKeyDown}
 							placeholder="할 일을 입력하세요..."
 						/>
-						<Button disabled={!todo} onClick={handleAppendButtonClick}>
+						<Button disabled={!todo.trim()} onClick={handleAppendButtonClick}>
 							추가
 						</Button>
 					</TodoInputBox>
