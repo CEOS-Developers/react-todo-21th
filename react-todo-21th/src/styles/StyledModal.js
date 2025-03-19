@@ -29,4 +29,17 @@ export const ModalContent = styled.div`
 `;
 
 // 닫기 버튼
-export const CloseButton = styled.button``;
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #666;
+
+  &:hover {
+    color: #333;
+  }
+`;
