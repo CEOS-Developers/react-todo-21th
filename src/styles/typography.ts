@@ -42,7 +42,6 @@ const fontStyles = {
     ${fontPrimary}
     font-size: 2.8rem;
     font-weight: 600;
-    letter-spacing: -0.56px;
   `,
   Body2: css`
     ${fontSecondary}
