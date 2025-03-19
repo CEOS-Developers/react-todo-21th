@@ -15,7 +15,7 @@ const App = () => {
   // 상태 변경시 LocalStorage에 업로드
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-  }, [todos]); // todolist 변경시마다 실행행
+  }, [todos]); // todolist 변경시마다 실행
 
   // 오늘 날짜로 selectedDate 업데이트
   const getToday = () => {
