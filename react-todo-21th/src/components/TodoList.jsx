@@ -79,11 +79,10 @@ const TodoList = ({ selectedDate, todos, addTodo, deleteTodo, toggleTodo }) => {
         <TodoListWrapper>
           {filteredTodos
             .filter((todo) => todo.completed)
-            .map((todo, index) => (
+            .map((todo) => (
               <TodoItem
-                key={`${selectedDate}-${index}`}
+                key={todo.id}
                 todo={todo}
-                index={index}
                 selectedDate={selectedDate}
                 deleteTodo={deleteTodo}
                 toggleTodo={toggleTodo}

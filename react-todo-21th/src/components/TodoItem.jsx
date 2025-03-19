@@ -5,17 +5,17 @@ import {
   DeleteButton,
 } from "../styles/StyledTodoList";
 
-const TodoItem = ({ todo, index, selectedDate, deleteTodo, toggleTodo }) => {
+const TodoItem = ({ todo, selectedDate, deleteTodo, toggleTodo }) => {
   return (
     <TodoItemContainer>
       <Checkbox
         checked={todo.completed}
         onChange={() => {
-          toggleTodo(selectedDate, index);
+          toggleTodo(selectedDate, todo.id);
         }}
       />
       <TodoText completed={todo.completed}>{todo.text}</TodoText>
-      <DeleteButton onClick={() => deleteTodo(selectedDate, index)}>
+      <DeleteButton onClick={() => deleteTodo(selectedDate, todo.id)}>
         del
       </DeleteButton>
     </TodoItemContainer>

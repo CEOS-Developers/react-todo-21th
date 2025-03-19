@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Calendar from "./components/Calendar";
 import Modal from "./components/Modal";
 import { GlobalStyles } from "./styles/GlobalStyles"; // 스타일 가져오기
+import { v4 as uuidv4 } from "uuid";
 
 const App = () => {
   // LocalStorage에서 기존 데이터 불러오기, todo 데이터 관리
@@ -35,25 +36,28 @@ const App = () => {
       // 기존 상태를 새로운 객체로 복사
       return {
         ...prevTodos,
-        [date]: [...(prevTodos[date] || []), { text, completed: false }],
+        [date]: [
+          ...(prevTodos[date] || []),
+          { id: uuidv4(), text, completed: false },
+        ],
       };
     });
   };
 
   // 할 일 list에서 제거
-  const deleteTodo = (date, index) => {
+  const deleteTodo = (date, id) => {
     setTodos((prevTodos) => {
-      const updatedTodoList = prevTodos[date].filter((_, i) => i !== index);
+      const updatedTodoList = prevTodos[date].filter((todo) => todo.id !== id);
       return { ...prevTodos, [date]: updatedTodoList };
     });
   };
 
   // 체크박스 토글 (완료/미완료)
-  const toggleTodo = (date, index) => {
+  const toggleTodo = (date, id) => {
     setTodos((prevTodos) => ({
       ...prevTodos,
-      [date]: prevTodos[date].map((todo, i) =>
-        i === index ? { ...todo, completed: !todo.completed } : todo
+      [date]: prevTodos[date].map((todo) =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
       ),
     }));
   };
