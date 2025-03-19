@@ -34,12 +34,15 @@ export const Checkbox = styled.input`
 	}
 `;
 
-export const TodoContent = memo(styled.label<{ $isDone: boolean }>`
-	padding: 7px 0;
+export const TodoContent = memo(styled.label<{ $isDone: boolean; $isHovered: boolean }>`
+	padding: 3px 0;
+	margin: auto 0;
 	cursor: pointer;
 
+	line-height: 24px;
+
 	max-height: 30px;
-	white-space: nowrap;
+	white-space: ${({ $isHovered }) => ($isHovered ? 'pre-line' : 'nowrap')};
 	overflow: hidden;
 	text-overflow: ellipsis;
 	transition: max-height 1.5s;
@@ -47,7 +50,6 @@ export const TodoContent = memo(styled.label<{ $isDone: boolean }>`
 	${({ $isDone }) => ($isDone ? 'color: rgb(150, 150, 150);	text-decoration: line-through;' : '')}
 
 	&:hover {
-		white-space: pre-line;
 		max-height: 300px;
 	}
 `);
