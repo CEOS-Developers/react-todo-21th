@@ -1,5 +1,5 @@
 import styled from "styled-components";
-// import { theme } from "../../assets/theme";
+import { theme } from "../../assets/theme";
 
 //flex>grid로 바꿈
 export const InputSection = styled.section`
@@ -26,7 +26,10 @@ export const InputSection = styled.section`
     grid-column: 1 / 3;
     grid-row: 3 / 4;
     display: flex;
+    font-size: 0.8rem;
     gap: 4px;
+    width: 100%;
+    justify-content: flex-end;
   }
 
   input {
@@ -35,6 +38,10 @@ export const InputSection = styled.section`
     background: rgba(255, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     transition: 0.2s;
+    color: ${theme.text};
+    &::placeholder {
+      color: ${theme.subText};
+    }
   }
 
   input:focus {
@@ -91,4 +98,26 @@ export const AddTag = styled.select`
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.3);
   transition: 0.2s;
+`;
+
+export const NewTagInput = styled.input`
+  width: 15%;
+  min-width: 100px;
+  height: 1.2rem;
+  border: none;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.3);
+  transition: 0.2s;
+  padding: 0 0.5rem;
+  font-size: 10px;
+`;
+
+export const NewTagBtn = styled.button`
+  border: none;
+  height: 1.2rem;
+  width: 1.2rem;
+  background: #d0d7f1;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
 `;

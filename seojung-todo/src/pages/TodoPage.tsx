@@ -22,7 +22,7 @@ const TodoPage = () => {
         </s.TodoListMain>
       </s.TodoBody>
       <s.Footer>
-        <p>© 한서정 세오스 1주차 과제</p>
+        <p>© 한서정 세오스 2주차 과제</p>
       </s.Footer>
     </s.TodoPage>
   );

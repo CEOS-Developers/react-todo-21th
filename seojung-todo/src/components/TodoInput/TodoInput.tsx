@@ -4,41 +4,17 @@ const TodoInput = () => {
   return (
     <s.InputSection>
       <div>
-        <s.TodoInput />
+        <s.TodoInput placeholder="할 일을 입력해주세요" />
         <s.TodoBtn>+</s.TodoBtn>
       </div>
-      <s.DateInput />
-      <s.AddTag />
-      <div></div>
+      <s.DateInput type="date" />
+      <s.AddTag></s.AddTag>
+      <div>
+        <s.NewTagInput type="text" placeholder="새 태그 추가" />
+        <s.NewTagBtn>+</s.NewTagBtn>
+      </div>
     </s.InputSection>
   );
 };
 
 export default TodoInput;
-
-/*
-.input-group input {
-    flex: 1;
-    padding: 14px;
-    border-radius: 10px;
-    transition: 0.2s;
-  }
-
-  .meta-group input {
-    padding: 12px;
-    border-radius: 10px;
-    transition: 0.2s;
-  }
-  .meta-group input:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.5);
-    box-shadow: 0px 0px 5px rgba(76, 154, 207, 0.3);
-  }
-
-  .new-tag input {
-    width: 100px;
-    height: 1.2rem;
-    border: none;
-    border-radius: 5px;
-  }
-*/

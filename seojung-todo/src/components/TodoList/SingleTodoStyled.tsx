@@ -37,7 +37,7 @@ export const UpperBox = styled.div`
     white-space: normal;
     line-height: 1.4;
     text-align: left;
-    margin-left: 4px;
+    margin-left: 0.5rem;
   }
 `;
 
