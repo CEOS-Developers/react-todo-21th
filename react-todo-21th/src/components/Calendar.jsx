@@ -14,6 +14,47 @@ import {
 } from "../styles/StyledCalendar";
 
 const Calendar = ({ openModal, setSelectedDate, todos, selectedDate }) => {
+  // 오늘 날짜 정보로 초기 세팅하기
+  const today = new Date();
+  // 오늘인지 확인할 String 생성
+  const formattedToday = `${today.getFullYear()}-${(today.getMonth() + 1)
+    .toString()
+    .padStart(2, "0")}-${today.getDate().toString().padStart(2, "0")}`;
+  const [currentYear, setCurrentYear] = useState(today.getFullYear());
+  const [currentMonth, setCurrentMonth] = useState(today.getMonth());
+
+  // 이전 달 이동하기
+  const prevMonth = () => {
+    setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
+    if (currentMonth === 0) setCurrentYear((prevYear) => prevYear - 1);
+  };
+
+  // 다음 달 이동하기
+  const nextMonth = () => {
+    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
+    if (currentMonth === 11) setCurrentYear((prevYear) => prevYear + 1);
+  };
+
+  // 날짜 정보 바뀔 때마다 selectedDate 업데이트하기
+  useEffect(() => {
+    const month = String(currentMonth + 1).padStart(2, "0");
+    setSelectedDate(`${currentYear}-${month}-01`);
+  }, [currentYear, currentMonth, setSelectedDate]);
+
+  // 캘린더 생성용 (각 달 첫날, 마지막날)
+  const getDaysInMonth = (year, month) =>
+    new Date(year, month + 1, 0).getDate();
+  const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+  const daysInMonth = getDaysInMonth(currentYear, currentMonth);
+
+  // 월별 필터링 함수 (Status 전달용)
+  const filterByMonth = useMemo(() => {
+    const month = selectedDate.slice(0, 7);
+    return Object.keys(todos)
+      .filter((date) => date.startsWith(month))
+      .flatMap((date) => todos[date]);
+  }, [todos, selectedDate]);
+
   return (
     <CalendarContainer>
       <CalendarHeader>
