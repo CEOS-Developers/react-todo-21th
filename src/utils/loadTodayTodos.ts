@@ -1,0 +1,19 @@
+import { formatDate } from './formatDate';
+
+export const loadTodayTodos = () => {
+	try {
+		const data = localStorage.getItem(formatDate(new Date()));
+
+		if (!data) {
+			return [];
+		} else {
+			return JSON.parse(data);
+		}
+	} catch (e) {
+		if (e instanceof DOMException && e.code === 22) {
+			console.error('localStorage 용량 초과');
+		} else {
+			console.error('알 수 없는 오류:', e);
+		}
+	}
+};
