@@ -12,6 +12,17 @@ import {
 } from "../styles/StyledTodoList";
 
 const TodoList = ({ selectedDate, todos, addTodo, deleteTodo, toggleTodo }) => {
+  const [inputValue, setInputValue] = useState("");
+
+  // 선택한 날짜의 투두 데이터 불러오기
+  const filteredTodos = todos[selectedDate] || [];
+
+  // 날짜 연, 월, 일 분리
+  const thisDay = new Date(selectedDate);
+  const year = thisDay.getFullYear();
+  const month = thisDay.getMonth() + 1;
+  const date = thisDay.getDate();
+
   return (
     <TodoContainer>
       <TodoHeader>
