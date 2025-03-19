@@ -52,16 +52,14 @@ const CalendarDateContents = ({
     let year = currentYear;
     let month = currentMonth;
     if (index < firstDateIndex) {
-      date.getMonth() === 0 ? 12 : date.getMonth();
-      if (currentMonth === 0) {
-        year = currentYear - 1;
-      }
+      month = currentMonth === 1 ? 12 : currentMonth - 1;
     } else if (index > lastDateIndex) {
-      currentMonth === 11 ? 1 : currentMonth + 1;
+      month = currentMonth === 12 ? 1 : currentMonth + 1;
       if (currentMonth === 11) {
         year = currentYear + 1;
       }
     }
+    console.log(`${year}/${month}/${calandarDate}`);
     return `${year}/${month}/${calandarDate}`;
   }
 

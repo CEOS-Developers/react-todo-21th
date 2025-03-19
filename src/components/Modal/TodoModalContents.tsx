@@ -48,7 +48,6 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
       ...prevState,
       { content: contents, isDone: false },
     ]);
-
     saveData({
       ...todoData,
       [date]: [...todoDateList, { content: contents, isDone: false }],
