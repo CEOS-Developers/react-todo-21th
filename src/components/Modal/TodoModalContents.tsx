@@ -80,7 +80,9 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
   }, [todoDateList]);
   return (
     <>
-      <ModalTitle>{new Date(date).getDate()}일에 할 일</ModalTitle>
+      <ModalTitle>
+        {new Date(date).getMonth() + 1}월 {new Date(date).getDate()}일에 할 일
+      </ModalTitle>
 
       <ul>
         {todoDateList.map((todo, index) => (

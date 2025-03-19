@@ -59,7 +59,6 @@ const CalendarDateContents = ({
         year = currentYear + 1;
       }
     }
-    console.log(`${year}/${month}/${calandarDate}`);
     return `${year}/${month}/${calandarDate}`;
   }
 
