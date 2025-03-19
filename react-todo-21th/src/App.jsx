@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Calendar from "./components/Calendar";
 import Modal from "./components/Modal";
 import { GlobalStyles } from "./styles/GlobalStyles"; // 스타일 가져오기
@@ -31,7 +31,7 @@ const App = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // 새로운 할 일 추가
-  const addTodo = (date, text) => {
+  const addTodo = useCallback((date, text) => {
     setTodos((prevTodos) => {
       // 기존 상태를 새로운 객체로 복사
       return {
@@ -42,25 +42,25 @@ const App = () => {
         ],
       };
     });
-  };
+  }, []);
 
   // 할 일 list에서 제거
-  const deleteTodo = (date, id) => {
+  const deleteTodo = useCallback((date, id) => {
     setTodos((prevTodos) => {
       const updatedTodoList = prevTodos[date].filter((todo) => todo.id !== id);
       return { ...prevTodos, [date]: updatedTodoList };
     });
-  };
+  }, []);
 
   // 체크박스 토글 (완료/미완료)
-  const toggleTodo = (date, id) => {
+  const toggleTodo = useCallback((date, id) => {
     setTodos((prevTodos) => ({
       ...prevTodos,
       [date]: prevTodos[date].map((todo) =>
         todo.id === id ? { ...todo, completed: !todo.completed } : todo
       ),
     }));
-  };
+  }, []);
 
   // 모달 열기/닫기
   const openModal = (date) => {
