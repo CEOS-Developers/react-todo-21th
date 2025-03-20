@@ -6,6 +6,9 @@ import { useReducer, useState } from 'react'
 import { createContext } from 'react'
 import formatDate from './utils/formatDate'
 
+import Container from './styles/Container'
+import Editor from './components/Editor'
+
 const mockData = {
   '2025-03-17': [
     { id: '1742276032173', content: '2', isFinished: false },
@@ -96,6 +99,10 @@ function App() {
         <TodoDispatchContext.Provider value={{ onCreate, onUpdateStatus, onDelete, setPivotDate }}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
+            <Container></Container>
+            <Container>
+              <Editor />
+            </Container>
           </ThemeProvider>
         </TodoDispatchContext.Provider>
       </TodoStateContext.Provider>
