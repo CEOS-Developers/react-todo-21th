@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Container from './styles/Container'
 import Editor from './components/Editor'
 import DailyContentHeader from './components/DailyContentHeader'
+import TodoViewer from './components/TodoViewer'
 
 const mockData = {
   '2025-03-17': [
@@ -20,8 +21,8 @@ const mockData = {
   ],
   '2025-03-18': [
     { id: '1742276032173', content: '2', isFinished: false },
-    { id: '1742276032462', content: '3', isFinished: false },
-    { id: '1742276032956', content: '4', isFinished: false },
+    { id: '1742276032462', content: '3', isFinished: true },
+    { id: '1742276032956', content: '4', isFinished: true },
     { id: '1742276031891', content: '1', isFinished: true },
   ],
   '2025-03-20': [
@@ -106,6 +107,7 @@ function App() {
             <Container>
               <DailyContentHeader />
               <Editor />
+              <TodoViewer />
             </Container>
           </ThemeProvider>
         </TodoDispatchContext.Provider>
