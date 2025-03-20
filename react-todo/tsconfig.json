@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "allowJs": false,
+    "noEmit": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "allowImportingTsExtensions": true,
+
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "typeRoots": ["./types", "./node_modules/@types"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts"],
+  "exclude": ["node_modules"]
+}
