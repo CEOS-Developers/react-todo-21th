@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { X, CircleDashed, CircleCheckBig } from 'lucide-react'
 import Icon from '../styles/Icon'
-import styled, { useTheme } from 'styled-components'
+import styled, { css, useTheme } from 'styled-components'
 import ClickableStyle from '../styles/ClickableStyle'
+import { TodoDispatchContext } from '../App'
 
 const StyledDiv = styled.div`
   ${ClickableStyle}
@@ -15,23 +16,33 @@ const StyledDiv = styled.div`
 
 const MainContent = styled.div`
   flex-grow: 1;
+
+  color: ${({ isFinished, theme }) => (isFinished ? theme.colors.lightStroke : 'black')};
+  text-decoration: ${({ isFinished }) => (isFinished ? 'line-through' : 'none')};
 `
 
-const TodoItem = ({ content, isFinished }) => {
+const TodoItem = ({ id, content, isFinished }) => {
   const theme = useTheme()
+  const { onDelete, onUpdateStatus } = useContext(TodoDispatchContext)
+  const onClickCheckboxButton = () => {
+    onUpdateStatus(id)
+  }
+  const onClickDeleteButton = () => {
+    onDelete(id)
+  }
   return (
     <StyledDiv>
       {isFinished ? (
-        <Icon color={theme.colors.point}>
+        <Icon onClick={onClickCheckboxButton} color={theme.colors.point}>
           <CircleCheckBig />
         </Icon>
       ) : (
-        <Icon color={theme.colors.darker}>
+        <Icon onClick={onClickCheckboxButton} color={theme.colors.darker}>
           <CircleDashed />
         </Icon>
       )}
-      <MainContent>{content}</MainContent>
-      <Icon color={theme.colors.darkStroke}>
+      <MainContent isFinished={isFinished ? 'true' : ''}>{content}</MainContent>
+      <Icon onClick={onClickDeleteButton} color={theme.colors.darkStroke}>
         <X />
       </Icon>
     </StyledDiv>
