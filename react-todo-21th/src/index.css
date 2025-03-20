@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "MyFont"; /* 원하는 폰트 이름 지정 */
+  src: url("./assets/fonts/MyCustomFont.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "MyFont", sans-serif;
+  font-size: 1rem;
+  background-color: rgb(233, 243, 233);
+}
