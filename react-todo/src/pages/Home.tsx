@@ -6,7 +6,13 @@ import Header from '@/components/Header/Header';
 import TodoInput from '@/components/TodoInput/TodoInput';
 import TodoItem from '@/components/TodoItem/TodoItem';
 
-const Home = () => {
+interface HomeProps {
+  themeMode: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+const Home = ({ themeMode, toggleTheme }: HomeProps) => {
+  // ✅ Props 추가
   const [currentDate, setCurrentDate] = useState(new Date());
   const [todos, setTodos] = useState<string[]>([]);
 
@@ -39,7 +45,7 @@ const Home = () => {
 
   return (
     <>
-      <Header />
+      <Header themeMode={themeMode} toggleTheme={toggleTheme} /> {/* ✅ Header로 props 전달 */}
       <S.Container>
         <S.DateSection>
           <S.WeekButton onClick={() => changeDate(-7)}>◀◀</S.WeekButton>

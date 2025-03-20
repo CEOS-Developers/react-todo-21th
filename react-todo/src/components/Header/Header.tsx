@@ -1,29 +1,32 @@
 import * as S from './Header.Styled';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SideBar from '@/components/SideBar/SideBar';
 
-const Header = () => {
-  const navigate = useNavigate();
+interface HeaderProps {
+  themeMode: 'light' | 'dark';
+  toggleTheme: () => void;
+}
+
+const Header = ({ themeMode, toggleTheme }: HeaderProps) => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen((prev) => !prev);
   };
 
+  const goToHome = () => {
+    window.location.reload();
+  };
+
   return (
     <>
-      <S.Container>
-        <S.HamburgerMenu onClick={toggleSidebar}>&#9776;</S.HamburgerMenu>
-        <S.Title
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          To Do
-        </S.Title>
-      </S.Container>
-      {isSidebarOpen && <SideBar />}
+      <S.HeaderDiv>
+        <S.Container>
+          <S.HamburgerMenu onClick={toggleSidebar}>&#9776;</S.HamburgerMenu>
+          <S.Title onClick={goToHome}>To Do</S.Title>
+        </S.Container>
+      </S.HeaderDiv>
+      {isSidebarOpen && <SideBar onClose={toggleSidebar} toggleTheme={toggleTheme} themeMode={themeMode} />}
     </>
   );
 };

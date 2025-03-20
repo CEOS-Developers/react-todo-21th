@@ -3,7 +3,8 @@ import styled from 'styled-components';
 export const ItemContainer = styled.div`
   display: flex;
   align-items: center;
-  background: ${({ theme }) => theme.colors.kakaoYellow};
+  background: ${({ theme }) => theme.colors.todoItemBg};
+  transition: background 0.3s ease;
   border-radius: 14px;
   width: 20rem;
   padding: 10px;
@@ -13,12 +14,13 @@ export const ItemContainer = styled.div`
   &::after {
     content: '';
     position: absolute;
-    top: 2px;
-    right: -8.5px;
-    width: 0;
-    height: 0;
-    border-top: 15px solid ${({ theme }) => theme.colors.kakaoYellow};
-    border-right: 15px solid transparent;
+    top: 3px;
+    right: -11px;
+    width: 16px;
+    height: 16px;
+    background: ${({ theme }) => theme.colors.todoItemBg};
+    clip-path: polygon(100% 0%, 0% 0%, 0% 100%);
+    transition: background 0.3s ease;
   }
 `;
 
@@ -55,7 +57,7 @@ export const Text = styled.span`
   flex-grow: 1;
   font-weight: 500;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.kakaoBrown};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const DeleteButton = styled.button`

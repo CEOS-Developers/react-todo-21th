@@ -1,14 +1,26 @@
 import { DefaultTheme } from 'styled-components';
+import { commonColors } from './colors';
 
-const theme: DefaultTheme = {
+const lightTheme: DefaultTheme = {
   colors: {
-    kakaoBlue: '#9bbbd4',
-    kakaoYellow: '#f7e600',
-    kakaoBrown: '#3a1d1d',
-    green: '#5bd15f',
-    black: '#000000',
-    white: '#ffffff',
+    background: '#9bbbd4',
+    text: '#3a1d1d',
+    sidebarBg: '#ffffff',
+    todoItemBg: '#f7e600',
+    toggleBg: '#ccc',
+    ...commonColors,
   },
 };
 
-export default theme;
+const darkTheme: DefaultTheme = {
+  colors: {
+    background: '#222',
+    text: '#ffffff',
+    sidebarBg: '#444',
+    todoItemBg: '#444',
+    toggleBg: '#666',
+    ...commonColors,
+  },
+};
+
+export { lightTheme, darkTheme };

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const InputContainer = styled.div`
   display: flex;
   border-radius: 14px;
-  width: 20rem;
+  width: calc(20rem + 11px);
   height: 2.5rem;
   padding: 10px;
   margin: 2rem 0 1rem 0;
