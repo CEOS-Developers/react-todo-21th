@@ -53,11 +53,15 @@ export const CheckBox = styled.input.attrs({ type: 'checkbox' })`
   }
 `;
 
-export const Text = styled.span`
+export const Text = styled.span<{ $isCompleted: boolean }>`
   flex-grow: 1;
   font-weight: 500;
   font-size: 14px;
-  color: ${({ theme }) => theme.colors.text};
+  color: ${({ $isCompleted, theme }) => ($isCompleted ? theme.colors.gray : theme.colors.text)};
+  text-decoration: ${({ $isCompleted }) => ($isCompleted ? 'line-through' : 'none')};
+  transition:
+    color 0.3s ease,
+    text-decoration 0.3s ease;
 `;
 
 export const DeleteButton = styled.button`

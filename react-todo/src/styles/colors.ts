@@ -5,4 +5,5 @@ export const commonColors = {
   green: '#5bd15f',
   black: '#000000',
   white: '#ffffff',
+  gray: '#8d8d8d',
 };

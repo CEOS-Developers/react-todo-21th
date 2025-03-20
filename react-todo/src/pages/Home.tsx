@@ -1,63 +1,71 @@
 import { useState, useEffect } from 'react';
 import * as S from './Home.Styled';
 import { getFormattedDate } from '@/utils/dateUtils';
-
 import Header from '@/components/Header/Header';
 import TodoInput from '@/components/TodoInput/TodoInput';
 import TodoItem from '@/components/TodoItem/TodoItem';
 
-interface HomeProps {
-  themeMode: 'light' | 'dark';
-  toggleTheme: () => void;
+interface Todo {
+  text: string;
+  isCompleted: boolean;
 }
 
-const Home = ({ themeMode, toggleTheme }: HomeProps) => {
-  // ✅ Props 추가
+const Home = ({ themeMode, toggleTheme }: { themeMode: 'light' | 'dark'; toggleTheme: () => void }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
-  const [todos, setTodos] = useState<string[]>([]);
+  const [todos, setTodos] = useState<Todo[]>([]);
 
-  // 날짜 변경
-  const changeDate = (days: number) => {
-    const newDate = new Date(currentDate);
-    newDate.setDate(newDate.getDate() + days);
-    setCurrentDate(newDate);
-  };
-
-  // 선택된 날짜의 Todo 불러오기
   useEffect(() => {
     const savedTodos = localStorage.getItem(getFormattedDate(currentDate));
     setTodos(savedTodos ? JSON.parse(savedTodos) : []);
   }, [currentDate]);
 
-  // 새로운 Todo 추가
-  const addTodo = (todo: string) => {
-    const newTodos = [...todos, todo];
+  const addTodo = (text: string) => {
+    const newTodos = [...todos, { text, isCompleted: false }];
     setTodos(newTodos);
     localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
   };
 
-  // Todo 삭제
   const removeTodo = (index: number) => {
     const newTodos = todos.filter((_, i) => i !== index);
     setTodos(newTodos);
     localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
   };
 
+  const toggleComplete = (index: number) => {
+    const newTodos = todos.map((todo, i) => (i === index ? { ...todo, isCompleted: !todo.isCompleted } : todo));
+    setTodos(newTodos);
+    localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
+  };
+
   return (
     <>
-      <Header themeMode={themeMode} toggleTheme={toggleTheme} /> {/* ✅ Header로 props 전달 */}
+      <Header themeMode={themeMode} toggleTheme={toggleTheme} />
       <S.Container>
         <S.DateSection>
-          <S.WeekButton onClick={() => changeDate(-7)}>◀◀</S.WeekButton>
-          <S.DayButton onClick={() => changeDate(-1)}>◀</S.DayButton>
+          <S.WeekButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 7)))}>
+            ◀◀
+          </S.WeekButton>
+          <S.DayButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)))}>
+            ◀
+          </S.DayButton>
           <S.Date>{getFormattedDate(currentDate)}</S.Date>
-          <S.DayButton onClick={() => changeDate(1)}>▶</S.DayButton>
-          <S.WeekButton onClick={() => changeDate(7)}>▶▶</S.WeekButton>
+          <S.DayButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 1)))}>
+            ▶
+          </S.DayButton>
+          <S.WeekButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 7)))}>
+            ▶▶
+          </S.WeekButton>
         </S.DateSection>
         <TodoInput addTodo={addTodo} />
         <S.ItemContainer>
           {todos.map((todo, index) => (
-            <TodoItem key={index} todo={todo} onRemove={() => removeTodo(index)} />
+            <TodoItem
+              key={index}
+              todo={todo.text}
+              isCompleted={todo.isCompleted}
+              onRemove={() => removeTodo(index)}
+              onToggleComplete={() => toggleComplete(index)}
+            />
           ))}
         </S.ItemContainer>
       </S.Container>
