@@ -39,3 +39,9 @@ export const WeekButton = styled.button`
 export const DayButton = styled(WeekButton)`
   padding: 5px;
 `;
+
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;

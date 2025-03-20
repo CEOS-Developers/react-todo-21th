@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputContainer = styled.div`
   display: flex;
-  border-radius: 1rem;
+  border-radius: 14px;
   width: 20rem;
   height: 2.5rem;
   padding: 10px;
