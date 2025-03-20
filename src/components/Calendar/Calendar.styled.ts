@@ -129,7 +129,7 @@ export const CalendarGrid = styled.ul`
 
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(6, 1fr);
+  grid-template-rows: auto;
 `;
 
 export const CalendarGridItem = styled.li`
@@ -141,7 +141,8 @@ export const CalendarGridItem = styled.li`
 
 export const CalendarGridItemLink = styled.a`
   width: 100%;
-  height: 10rem;
+
+  aspect-ratio: 1 / 1;
 
   display: flex;
   flex-direction: column;
@@ -150,12 +151,19 @@ export const CalendarGridItemLink = styled.a`
   gap: 0.8rem;
 `;
 
-export const DayText = styled.span<{ $isSelected: boolean }>`
+export const DayTextBox = styled.div<{
+  $isSelected: boolean;
+  $isCurrentMonthDay: boolean;
+}>`
   position: relative;
 
   ${({ theme }) => theme.fontStyles.Header2}
-  color: ${({ $isSelected, theme }) =>
-    $isSelected ? theme.colors.Grayscale[0] : theme.colors.Grayscale[500]};
+  color: ${({ $isSelected, $isCurrentMonthDay, theme }) =>
+    $isSelected
+      ? theme.colors.Grayscale[0]
+      : $isCurrentMonthDay
+        ? theme.colors.Grayscale[500]
+        : theme.colors.Grayscale[300]};
 
   &::before {
     content: ${({ $isSelected }) => ($isSelected ? '""' : 'none')};

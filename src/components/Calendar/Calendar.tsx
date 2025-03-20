@@ -3,16 +3,56 @@ import { useState } from 'react';
 import { CalendarIcon } from '@/icons/Calendar';
 import { LeftArrowIcon, RightArrowIcon } from '@/icons/Arrow';
 
-import { CALENDAR_DAY_LIST, DAY_LIST } from '@/constants/calendar';
+import { DAY_LIST, MONTH_NAMES } from '@/constants/calendar';
+
+import { generateCalendar } from '@/utils/generateCalender';
 
 import * as S from './Calendar.styled';
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState({
     year: 2025,
-    month: 'March',
+    month: 3,
     day: 20,
   });
+
+  const currentMonthName = MONTH_NAMES[currentDate.month - 1];
+
+  const calendarDays = generateCalendar(currentDate.year, currentDate.month);
+
+  const handlePrevMonth = () => {
+    if (currentDate.month === 1) {
+      return setCurrentDate({
+        ...currentDate,
+        year: currentDate.year - 1,
+        month: 12,
+        day: 1,
+      });
+    }
+
+    setCurrentDate({
+      ...currentDate,
+      month: currentDate.month - 1,
+      day: 1,
+    });
+  };
+
+  const handleNextMonth = () => {
+    if (currentDate.month === 12) {
+      return setCurrentDate({
+        ...currentDate,
+        year: currentDate.year + 1,
+        month: 1,
+        day: 1,
+      });
+    }
+
+    setCurrentDate({
+      ...currentDate,
+      month: currentDate.month + 1,
+      day: 1,
+    });
+  };
 
   const handleDaySelect = (day: number) => {
     setCurrentDate({
@@ -31,13 +71,13 @@ const Calendar = () => {
 
       {/* Date Picker */}
       <S.DatePickerSection>
-        <S.PreviousMonthButton>
+        <S.PreviousMonthButton onClick={handlePrevMonth}>
           <LeftArrowIcon />
         </S.PreviousMonthButton>
         <S.CurrentMonthYear>
-          {currentDate.month}, {currentDate.year}
+          {currentMonthName}, {currentDate.year}
         </S.CurrentMonthYear>
-        <S.NextMonthButton>
+        <S.NextMonthButton onClick={handleNextMonth}>
           <RightArrowIcon />
         </S.NextMonthButton>
       </S.DatePickerSection>
@@ -55,12 +95,20 @@ const Calendar = () => {
         {/* Calendar Grid */}
         <S.CalendarGridSection>
           <S.CalendarGrid>
-            {CALENDAR_DAY_LIST.map((day, index) => (
+            {calendarDays.map((day, index) => (
               <S.CalendarGridItem key={index}>
-                <S.CalendarGridItemLink onClick={() => handleDaySelect(day)}>
-                  <S.DayText $isSelected={currentDate.day === day}>
-                    {day}
-                  </S.DayText>
+                <S.CalendarGridItemLink
+                  onClick={() => handleDaySelect(day.date)}
+                >
+                  <S.DayTextBox
+                    $isCurrentMonthDay={day.monthType === 'current'}
+                    $isSelected={
+                      day.monthType === 'current' &&
+                      currentDate.day === day.date
+                    }
+                  >
+                    {day.date}
+                  </S.DayTextBox>
                   <S.UnLoggedCircle />
                 </S.CalendarGridItemLink>
               </S.CalendarGridItem>
