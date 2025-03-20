@@ -18,6 +18,9 @@ export const DateSection = styled.div`
   width: 100%;
   height: 2rem;
   gap: 2rem;
+  @media (max-width: 480px) {
+    gap: 1rem;
+  }
 `;
 
 export const Date = styled.span`
