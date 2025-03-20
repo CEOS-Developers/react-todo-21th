@@ -37,7 +37,7 @@ const todoReducer = (state, action) => {
       return {
         ...state,
         [action.date]: [
-          ...state[action.date],
+          ...(state[action.date] || []),
           {
             id: action.data.id,
             content: action.data.content,
