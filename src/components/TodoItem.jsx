@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { X, CircleDashed, CircleCheckBig } from 'lucide-react'
 import Icon from '../styles/Icon'
-import styled, { css, useTheme } from 'styled-components'
+import styled, { useTheme } from 'styled-components'
 import ClickableStyle from '../styles/ClickableStyle'
 import { TodoDispatchContext } from '../App'
 
@@ -28,7 +28,7 @@ const TodoItem = ({ id, content, isFinished }) => {
     onUpdateStatus(id)
   }
   const onClickDeleteButton = () => {
-    onDelete(id)
+    if (window.confirm('삭제하시겠습니까? 복구되지 않습니다.')) onDelete(id)
   }
   return (
     <StyledDiv>
