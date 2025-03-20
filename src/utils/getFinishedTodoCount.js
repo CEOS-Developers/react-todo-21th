@@ -1,5 +1,5 @@
 const getFinishedTodoCount = (dailyTodos) => {
-  const finishedTodos = dailyTodos.filter((todo) => todo.status === true).length
+  const finishedTodos = dailyTodos.filter((todo) => todo.isFinished === true).length
 
   return finishedTodos
 }
