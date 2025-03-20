@@ -9,6 +9,7 @@ import formatDate from './utils/formatDate'
 import Header from './components/Header'
 import Container from './styles/Container'
 import Editor from './components/Editor'
+import DailyContentHeader from './components/DailyContentHeader'
 
 const mockData = {
   '2025-03-17': [
@@ -103,6 +104,7 @@ function App() {
             <Header />
             <Container></Container>
             <Container>
+              <DailyContentHeader />
               <Editor />
             </Container>
           </ThemeProvider>
