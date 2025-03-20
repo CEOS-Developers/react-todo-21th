@@ -1,16 +1,10 @@
 import React, { useContext, useState } from 'react'
 import { TodoDispatchContext } from '../App'
-import styled from 'styled-components'
 
 import TextInput from '../styles/TextInput'
 import CircleButton from '../styles/CircleButton'
 import { Plus } from 'lucide-react'
-
-const StyledDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-`
+import FlexContainerRow from '../styles/FlexContainerRow'
 
 const Editor = () => {
   const [todo, setTodo] = useState('')
@@ -31,7 +25,7 @@ const Editor = () => {
   }
 
   return (
-    <StyledDiv>
+    <FlexContainerRow>
       <TextInput
         value={todo}
         onChange={onChangeTodoInput}
@@ -41,7 +35,7 @@ const Editor = () => {
       <CircleButton onClick={onSubmitTodo}>
         <Plus />
       </CircleButton>
-    </StyledDiv>
+    </FlexContainerRow>
   )
 }
 
