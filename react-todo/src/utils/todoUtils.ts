@@ -26,7 +26,12 @@ export const addTodo = (text: string, todos: Todo[], date: Date, setTodos: (todo
 /* 할 일 삭제 */
 export const removeTodo = (index: number, todos: Todo[], date: Date, setTodos: (todos: Todo[]) => void) => {
   const updatedTodos = todos.filter((_, i) => i !== index);
-  saveTodosToStorage(date, updatedTodos, setTodos);
+  if (updatedTodos.length === 0) {
+    localStorage.removeItem(getFormattedDate(date));
+  } else {
+    saveTodosToStorage(date, updatedTodos, setTodos);
+  }
+  setTodos(updatedTodos);
 };
 
 /* 완료 상태 토글 */
