@@ -63,10 +63,13 @@ const App = () => {
   }, []);
 
   // 모달 열기/닫기
-  const openModal = (date) => {
-    setSelectedDate(date);
-    setIsModalOpen(true);
-  };
+  const openModal = useCallback(
+    (date) => {
+      setSelectedDate(date);
+      setIsModalOpen(true);
+    },
+    [setSelectedDate]
+  );
 
   const closeModal = () => {
     setIsModalOpen(false);
