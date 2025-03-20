@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
 import * as S from './SideBar.Styled';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
-import { getFormattedDate, getWeekRange, getDayOfWeek } from '@/utils/dateUtils';
+import useCompletedTodos from '@/hooks/useCompletedTodos';
+import { getDayOfWeek } from '@/utils/dateUtils';
 
 interface SideBarProps {
   onClose: () => void;
@@ -10,61 +10,13 @@ interface SideBarProps {
 }
 
 const SideBar = ({ onClose, toggleTheme, themeMode }: SideBarProps) => {
-  const [completedTodos, setCompletedTodos] = useState<{ [key: string]: number }>({});
-  const [maxDays, setMaxDays] = useState<string[]>([]);
+  const { completedTodos, maxDays } = useCompletedTodos();
   const today = new Date();
   const todayDay = getDayOfWeek(today);
 
-  useEffect(() => {
-    const updateCompletedTodos = () => {
-      const { startOfWeek, endOfWeek } = getWeekRange(new Date());
-      let weeklyData: { [key: string]: number } = {};
-      let maxCount = 0;
-      let maxDaysList: string[] = [];
-
-      for (let d = new Date(startOfWeek); d <= endOfWeek; d.setDate(d.getDate() + 1)) {
-        const dateKey = getFormattedDate(d);
-        const dayName = getDayOfWeek(d);
-        const savedTodos = localStorage.getItem(dateKey);
-
-        if (savedTodos) {
-          const todos = JSON.parse(savedTodos);
-          const completedCount = todos.filter((todo: { isCompleted: boolean }) => todo.isCompleted).length;
-          weeklyData[dayName] = completedCount;
-
-          if (completedCount > maxCount) {
-            maxCount = completedCount;
-            maxDaysList = [dayName];
-          } else if (completedCount === maxCount && maxCount !== 0) {
-            maxDaysList.push(dayName);
-          }
-        } else {
-          weeklyData[dayName] = 0;
-        }
-      }
-
-      setCompletedTodos(weeklyData);
-
-      // ✅ 최대 값이 0이 아닐 경우에만 maxDays 설정
-      if (maxCount > 0) {
-        setMaxDays(maxDaysList);
-      } else {
-        setMaxDays([]); // 모두 0개일 경우 색칠 제거
-      }
-    };
-
-    updateCompletedTodos();
-
-    window.addEventListener('storage', updateCompletedTodos);
-    return () => {
-      window.removeEventListener('storage', updateCompletedTodos);
-    };
-  }, []);
-
+  /* 사이드바 바깥 클릭 시 닫기 */
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
+    if (e.target === e.currentTarget) onClose();
   };
 
   return (
