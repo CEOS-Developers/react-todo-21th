@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext } from 'react'
 import { TodoDispatchContext, TodoStateContext } from '../App'
 import { useTheme } from 'styled-components'
 
@@ -16,18 +16,10 @@ const DailyContentHeader = () => {
 
   const dailyTodos = todos[pivotDate] || []
   const finishedTodosCount = getFinishedTodoCount(dailyTodos)
+  const { onClickDate } = useContext(TodoDispatchContext)
 
-  const dateInputRef = useRef(null)
-  const onClickDate = () => {
-    dateInputRef.current.showPicker()
-  }
-  const { setPivotDate } = useContext(TodoDispatchContext)
-  const onChangeDate = (e) => {
-    setPivotDate(e.target.value)
-  }
   return (
     <div>
-      <input ref={dateInputRef} onChange={onChangeDate} type="date" hidden />
       <SubTitle clickable="true" onClick={onClickDate}>
         {year}
       </SubTitle>
