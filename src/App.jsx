@@ -6,6 +6,7 @@ import { useReducer, useState } from 'react'
 import { createContext } from 'react'
 import formatDate from './utils/formatDate'
 
+import Header from './components/Header'
 import Container from './styles/Container'
 import Editor from './components/Editor'
 
@@ -99,6 +100,7 @@ function App() {
         <TodoDispatchContext.Provider value={{ onCreate, onUpdateStatus, onDelete, setPivotDate }}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
+            <Header />
             <Container></Container>
             <Container>
               <Editor />
