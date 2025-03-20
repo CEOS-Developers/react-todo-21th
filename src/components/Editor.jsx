@@ -16,7 +16,7 @@ const Editor = () => {
 
   const handleKeyDown = (e) => {
     if (e.nativeEvent.isComposing) return
-    onSubmitTodo()
+    if (e.key === 'Enter') onSubmitTodo()
   }
 
   const onSubmitTodo = () => {
