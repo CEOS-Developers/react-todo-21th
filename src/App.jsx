@@ -2,7 +2,7 @@ import { ThemeProvider } from 'styled-components'
 import './App.css'
 import { theme } from './utils/theme'
 import GlobalStyle from './styles/GlobalStyle'
-import { useReducer, useState } from 'react'
+import { useEffect, useReducer, useState } from 'react'
 import { createContext } from 'react'
 import formatDate from './utils/formatDate'
 
@@ -11,28 +11,12 @@ import Container from './styles/Container'
 import Editor from './components/Editor'
 import DailyContentHeader from './components/DailyContentHeader'
 import TodoViewer from './components/TodoViewer'
-
-const mockData = {
-  '2025-03-17': [
-    { id: '1742276032173', content: '2', isFinished: false },
-    { id: '1742276032462', content: '3', isFinished: false },
-    { id: '1742276032956', content: '4', isFinished: false },
-    { id: '1742276031891', content: '1', isFinished: true },
-  ],
-  '2025-03-18': [
-    { id: '1742276032173', content: '2', isFinished: false },
-    { id: '1742276032462', content: '3', isFinished: true },
-    { id: '1742276032956', content: '4', isFinished: true },
-    { id: '1742276031891', content: '1', isFinished: true },
-  ],
-  '2025-03-20': [
-    { id: '1742284939484', content: '세오스 엠티', isFinished: false },
-    { id: '1742362973445', content: '1', isFinished: false },
-  ],
-}
+import { loadTodos, saveTodos } from './utils/storage'
 
 const todoReducer = (state, action) => {
   switch (action.type) {
+    case 'INIT':
+      return action.data
     case 'CREATE':
       return {
         ...state,
@@ -66,8 +50,23 @@ export const TodoStateContext = createContext()
 export const TodoDispatchContext = createContext()
 
 function App() {
-  const [todos, updateTodos] = useReducer(todoReducer, mockData)
+  const [isLoading, setIsLoading] = useState(true)
+  const [todos, updateTodos] = useReducer(todoReducer, {})
   const [pivotDate, setPivotDate] = useState(formatDate(new Date()))
+
+  useEffect(() => {
+    const storedTodos = loadTodos()
+    console.log(storedTodos)
+    updateTodos({
+      type: 'INIT',
+      data: storedTodos,
+    })
+    setTimeout(() => setIsLoading(false), 0)
+  }, [])
+
+  useEffect(() => {
+    if (!isLoading) saveTodos(todos)
+  }, [todos])
 
   const onCreate = (id, content) => {
     updateTodos({
