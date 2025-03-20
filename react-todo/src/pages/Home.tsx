@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import * as S from './Home.Styled';
 import { getFormattedDate } from '@/utils/dateUtils';
+import { getTodosFromStorage, addTodo, removeTodo, toggleComplete, changeDate } from '@/utils/todoUtils';
 import Header from '@/components/Header/Header';
 import TodoInput from '@/components/TodoInput/TodoInput';
 import TodoItem from '@/components/TodoItem/TodoItem';
@@ -11,60 +12,35 @@ interface Todo {
 }
 
 const Home = ({ themeMode, toggleTheme }: { themeMode: 'light' | 'dark'; toggleTheme: () => void }) => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [currentDate, setCurrentDate] = useState(() => new Date());
+  const [todos, setTodos] = useState<Todo[]>(() => getTodosFromStorage(new Date()));
 
   useEffect(() => {
-    const savedTodos = localStorage.getItem(getFormattedDate(currentDate));
-    setTodos(savedTodos ? JSON.parse(savedTodos) : []);
+    setTodos(getTodosFromStorage(currentDate));
   }, [currentDate]);
 
-  const addTodo = (text: string) => {
-    const newTodos = [...todos, { text, isCompleted: false }];
-    setTodos(newTodos);
-    localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
-  };
-
-  const removeTodo = (index: number) => {
-    const newTodos = todos.filter((_, i) => i !== index);
-    setTodos(newTodos);
-    localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
-  };
-
-  const toggleComplete = (index: number) => {
-    const newTodos = todos.map((todo, i) => (i === index ? { ...todo, isCompleted: !todo.isCompleted } : todo));
-    setTodos(newTodos);
-    localStorage.setItem(getFormattedDate(currentDate), JSON.stringify(newTodos));
-  };
+  const formattedDate = useMemo(() => getFormattedDate(currentDate), [currentDate]);
 
   return (
     <>
       <Header themeMode={themeMode} toggleTheme={toggleTheme} />
       <S.Container>
         <S.DateSection>
-          <S.WeekButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 7)))}>
-            ◀◀
-          </S.WeekButton>
-          <S.DayButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() - 1)))}>
-            ◀
-          </S.DayButton>
-          <S.Date>{getFormattedDate(currentDate)}</S.Date>
-          <S.DayButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 1)))}>
-            ▶
-          </S.DayButton>
-          <S.WeekButton onClick={() => setCurrentDate(new Date(currentDate.setDate(currentDate.getDate() + 7)))}>
-            ▶▶
-          </S.WeekButton>
+          <S.WeekButton onClick={() => changeDate(-7, currentDate, setCurrentDate)}>◀◀</S.WeekButton>
+          <S.DayButton onClick={() => changeDate(-1, currentDate, setCurrentDate)}>◀</S.DayButton>
+          <S.Date>{formattedDate}</S.Date>
+          <S.DayButton onClick={() => changeDate(1, currentDate, setCurrentDate)}>▶</S.DayButton>
+          <S.WeekButton onClick={() => changeDate(7, currentDate, setCurrentDate)}>▶▶</S.WeekButton>
         </S.DateSection>
-        <TodoInput addTodo={addTodo} />
+        <TodoInput addTodo={(text) => addTodo(text, todos, currentDate, setTodos)} />
         <S.ItemContainer>
           {todos.map((todo, index) => (
             <TodoItem
               key={index}
               todo={todo.text}
               isCompleted={todo.isCompleted}
-              onRemove={() => removeTodo(index)}
-              onToggleComplete={() => toggleComplete(index)}
+              onRemove={() => removeTodo(index, todos, currentDate, setTodos)}
+              onToggleComplete={() => toggleComplete(index, todos, currentDate, setTodos)}
             />
           ))}
         </S.ItemContainer>

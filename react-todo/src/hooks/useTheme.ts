@@ -4,18 +4,21 @@ import { DefaultTheme } from 'styled-components';
 
 export type ThemeMode = 'light' | 'dark';
 
+/** 테마 상태 관리 훅 */
 export const useTheme = () => {
+  /* 로컬스토리지에서 테마 불러오기 */
   const getInitialTheme = (): ThemeMode => {
-    const storedTheme = localStorage.getItem('theme') as ThemeMode | null;
-    return storedTheme || 'light';
+    return (localStorage.getItem('theme') as ThemeMode) || 'light';
   };
 
   const [themeMode, setThemeMode] = useState<ThemeMode>(getInitialTheme);
 
+  /* 테마 변경 시 로컬스토리지 업데이트 */
   useEffect(() => {
     localStorage.setItem('theme', themeMode);
   }, [themeMode]);
 
+  /* 테마 토글 */
   const toggleTheme = () => {
     setThemeMode((prev) => (prev === 'light' ? 'dark' : 'light'));
   };
