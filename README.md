@@ -8,7 +8,7 @@
 그리하여 이번 미션은, 1주차 스터디 미션으로 주어진 Todo list 만들기를 **React**로 리팩토링하는 것 입니다!
 기존에 리액트를 잘 아시던 분들께는, 조금 더 효울적인 디자인 패턴에 대해 고민할수 있는 주차가 될 것이고, 리액트를 제대로 접해보지 못하신 분들께는 기존의 어플리케이션을 리액트로 포팅하는 과정을 통해 왜 프론트엔드 시장에 리액트가 등장하게 되었고, 리액트에서 사용하는 여러가지 방식들이 왜 바닐라에 비해 효율적인지 꺠닫는 주차가 될 것이라 생각합니다.
 
-비교적 가벼운 미션인 만큼 코드를 짜는 데 있어 여러분의 **창의성**을 충분히 발휘해보시기 바랍니다. _❕작동하기만 하면 되는 것보다 같은 코드를 짜는 여러가지 방식과 패턴에 대해 많이 고민해보시고, 본인이 작성할 수 있는 가장 창의적인 방법으로 코드를 작성해주셨으면 합니다.❕_ 여러분이 미션 수행을 하는 과정에서 한 생각과 고민만큼 스터디에서 더 많은 것을 얻어가실 수 있을 거라 기대합니다!  
+비교적 가벼운 미션인 만큼 코드를 짜는 데 있어 여러분의 **창의성**을 충분히 발휘해보시기 바랍니다. _❕작동하기만 하면 되는 것보다 같은 코드를 짜는 여러가지 방식과 패턴에 대해 많이 고민해보시고, 본인이 작성할 수 있는 가장 창의적인 방법으로 코드를 작성해주셨으면 합니다.❕_ 여러분이 미션 수행을 하는 과정에서 한 생각과 고민만큼 스터디에서 더 많은 것을 얻어가실 수 있을 거라 기대합니다!
 
 또한, React 프로젝트를 생성하는 데 있어서 **Vite활용**이 필수입니다! 이유는 기존에 React 프로젝트를 생성하는 방법중 하나인 **Create React App(CRA)**가 25년에 공식적으로 더 이상 지원되지 않는다고 발표했습니다. 그리고 추가적으로 공식문서에서도 Vite로 프로젝트를 생성하는 것을 권장하고 있고, 과제를 진행하면서 Vite를 활용한 프로젝트 환경 세팅과 Build Tool, 번들링 등의 지식을 습득하는 경험이 도움이 될 것이라 생각됩니다.
 
@@ -66,8 +66,8 @@
 - [리액트 useEffect 완벽 가이드](https://overreacted.io/ko/a-complete-guide-to-useeffect/)
 - [컴포넌트 네이밍을 위한 자바스크립트 네이밍 컨벤션](https://velog.io/@cada/%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EA%B0%80%EC%9D%B4%EB%93%9C-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EC%BB%A8%EB%B2%A4%EC%85%98-%ED%8E%B8)
 - [useState, useEffect hooks](https://velog.io/@velopert/react-hooks#1-usestate)
-- [styled-component](https://styled-components.com/docs/basics#getting-started) 
-- [create react app (CRA) 지원종료 공식문서](https://react.dev/blog/2025/02/14/sunsetting-create-react-app) 
+- [styled-component](https://styled-components.com/docs/basics#getting-started)
+- [create react app (CRA) 지원종료 공식문서](https://react.dev/blog/2025/02/14/sunsetting-create-react-app)
 - [create react app 지원종료관련 okky 커뮤니티 게시글](https://okky.kr/articles/1527414) 
 - [cra 대신에 vite로 React 프로젝트 시작하기](https://www.daleseo.com/vite-react/) 
 - [Vite 실무 적용기 - 설명 + 프로젝트 설정](https://blog.hectodata.co.kr/bonjour-vite/)
