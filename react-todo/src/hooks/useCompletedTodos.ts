@@ -28,7 +28,7 @@ const useCompletedTodos = () => {
     return weeklyData;
   }, []);
 
-  /* 최대 완료 요일 찾기 */
+  /* 완료 todo가 가장 많은 요일 찾기 */
   const getMaxDays = useCallback((weeklyData: { [key: string]: number }) => {
     let maxCount = Math.max(...Object.values(weeklyData));
     if (maxCount === 0) return []; // 모든 요일이 0개면 강조하지 않음
