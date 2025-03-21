@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { formatDate } from "../utils/dateFormatter";
 import { countCompletedTodos, countPendingTodos } from "../utils/CountTodo";
 import {
@@ -12,6 +12,10 @@ import {
 
 function Update({ todos, setTodos, date }) {
   const [inputValue, setInputValue] = useState("");
+
+  //useMemo 사용하여 [todo]가 변경될 때만, 해당 값들 다시 계산되게 함
+  const completedCount = useMemo(() => countCompletedTodos(todos), [todos]);
+  const pendingCount = useMemo(() => countPendingTodos(todos), [todos]);
 
   const addTodo = () => {
     if (!inputValue.trim()) return;
@@ -64,8 +68,8 @@ function Update({ todos, setTodos, date }) {
         <CurrentDate>{date}</CurrentDate>
 
         <CountTodo>
-          <p>완료 된 할 일: {countCompletedTodos(todos)}</p>
-          <p>미완료 된 할 일: {countPendingTodos(todos)}</p>
+          <p>완료 된 할 일: {completedCount}</p>
+          <p>미완료 된 할 일: {pendingCount}</p>
         </CountTodo>
 
         <InputSection>
