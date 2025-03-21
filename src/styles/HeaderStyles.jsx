@@ -6,7 +6,7 @@ export const StyledHeader = styled.header`
   text-align: center;
   font-size: 24px;
   font-weight: bold;
-  background-color:rgb(0, 0, 0);
+  background-color:#222;
   color: white;
   cursor: pointer;
 `;

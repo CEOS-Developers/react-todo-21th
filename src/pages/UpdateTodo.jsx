@@ -7,7 +7,8 @@ import {
   CountTodo,
   InputSection,
   TodoList,
-} from "../styles/UpdateStyles";
+  UpdateContainer
+} from "../styles/UpdateTodoStyles";
 
 function Update({ todos, setTodos, date }) {
   const [inputValue, setInputValue] = useState("");
@@ -59,39 +60,41 @@ function Update({ todos, setTodos, date }) {
 
   return (
     <UpdateWrapper>
-      <CurrentDate>{date}</CurrentDate>
+      <UpdateContainer>
+        <CurrentDate>{date}</CurrentDate>
 
-      <CountTodo>
-        <p>완료된 할 일: {countCompletedTodos(todos)}</p>
-        <p>미완료 할 일: {countPendingTodos(todos)}</p>
-      </CountTodo>
+        <CountTodo>
+          <p>완료 된 할 일: {countCompletedTodos(todos)}</p>
+          <p>미완료 된 할 일: {countPendingTodos(todos)}</p>
+        </CountTodo>
 
-      <InputSection>
-        <input
-          type="text"
-          placeholder="할 일을 입력하세요"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <button onClick={addTodo}>추가</button>
-      </InputSection>
+        <InputSection>
+          <input
+            type="text"
+            placeholder="할 일을 입력하세요"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={addTodo}>추가</button>
+        </InputSection>
 
-      <TodoList>
-        <ul>
-          {todos.map((todo, index) => (
-            <li key={index}>
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => checkTodo(index)} // 체크 상태 변경
-              />
-              <span>{todo.text}</span>
-              <button onClick={() => deleteTodo(index)}>삭제</button>
-            </li>
-          ))}
-        </ul>
-      </TodoList>
+        <TodoList>
+          <ul>
+            {todos.map((todo, index) => (
+              <li key={index}>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => checkTodo(index)} // 체크 상태 변경
+                />
+                <span>{todo.text}</span>
+                <button onClick={() => deleteTodo(index)}>삭제</button>
+              </li>
+            ))}
+          </ul>
+        </TodoList>
+      </UpdateContainer>
     </UpdateWrapper>
   );
 }

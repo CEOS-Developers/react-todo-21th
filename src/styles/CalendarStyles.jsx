@@ -10,7 +10,7 @@ export const CalendarTile = styled.div`
 `;
 
 export const CalendarWrapper = styled.div`
-  background-color: black;
+  background-color: #222;;
   color: white;
   min-height: 100vh;
   padding: 20px;
