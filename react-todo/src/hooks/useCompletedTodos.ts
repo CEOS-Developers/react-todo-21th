@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { getFormattedDate, getWeekRange, getDayOfWeek } from '@/utils/dateUtils';
 
-/* 주간 완료한 할 일 개수를 관리하는 커스텀 훅 */
+/* 주간 완료한 할 일 개수를 관리하는 훅 */
 const useCompletedTodos = () => {
   const [completedTodos, setCompletedTodos] = useState<{ [key: string]: number }>({});
   const [maxDays, setMaxDays] = useState<string[]>([]);
