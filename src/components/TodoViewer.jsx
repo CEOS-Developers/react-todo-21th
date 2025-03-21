@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const ScrollDiv = styled.div`
   overflow-y: scroll;
-  height: 200px;
+  height: 250px;
 `
 
 const TodoViewer = () => {

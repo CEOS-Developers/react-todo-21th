@@ -12,8 +12,10 @@ import Editor from './components/Editor'
 import DailyContentHeader from './components/DailyContentHeader'
 import TodoViewer from './components/TodoViewer'
 import { loadTodos, saveTodos } from './utils/storage'
-import FlexContainerRow from './styles/FlexContainerRow'
+import Wrapper from './styles/Wrapper'
 import WeeklyContentHeader from './components/WeeklyContentHeader'
+import WeeklyViewer from './components/WeeklyViewer'
+import Footer from './styles/Footer'
 
 const todoReducer = (state, action) => {
   switch (action.type) {
@@ -35,13 +37,17 @@ const todoReducer = (state, action) => {
       return {
         ...state,
         [action.date]: state[action.date].map((todo) =>
-          todo.id === action.id ? { ...todo, isFinished: !todo.isFinished } : todo
+          todo.id === action.id
+            ? { ...todo, isFinished: !todo.isFinished }
+            : todo
         ),
       }
     case 'DELETE':
       return {
         ...state,
-        [action.date]: state[action.date].filter((todo) => todo.id !== action.id),
+        [action.date]: state[action.date].filter(
+          (todo) => todo.id !== action.id
+        ),
       }
     default:
       return state
@@ -58,7 +64,6 @@ function App() {
 
   useEffect(() => {
     const storedTodos = loadTodos()
-    console.log(storedTodos)
     updateTodos({
       type: 'INIT',
       data: storedTodos,
@@ -109,21 +114,34 @@ function App() {
     <>
       <TodoStateContext.Provider value={{ todos, pivotDate }}>
         <TodoDispatchContext.Provider
-          value={{ onCreate, onUpdateStatus, onDelete, setPivotDate, onClickDate }}>
+          value={{
+            onCreate,
+            onUpdateStatus,
+            onDelete,
+            setPivotDate,
+            onClickDate,
+          }}>
           <ThemeProvider theme={theme}>
             <GlobalStyle />
             <Header />
-            <FlexContainerRow>
+            <Wrapper>
               <Container>
                 <WeeklyContentHeader />
+                <WeeklyViewer />
               </Container>
-              <input ref={dateInputRef} onChange={onChangeDate} type="date" hidden />
-              <Container>
+              <input
+                ref={dateInputRef}
+                onChange={onChangeDate}
+                type="date"
+                hidden
+              />
+              <Container width="50%">
                 <DailyContentHeader />
                 <Editor />
                 <TodoViewer />
               </Container>
-            </FlexContainerRow>
+            </Wrapper>
+            <Footer />
           </ThemeProvider>
         </TodoDispatchContext.Provider>
       </TodoStateContext.Provider>

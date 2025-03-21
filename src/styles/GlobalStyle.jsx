@@ -3,12 +3,17 @@ import { createGlobalStyle } from 'styled-components'
 const GlobalStyle = createGlobalStyle/*css */ `
 body, html{
     height: 100%;
-    overflow: hidden;
-    font-family:  ${(props) => props.theme.fonts.main};
+    font-family:  ${({ theme }) => theme.fonts.main};
 }
 body{
-    background-color: ${(props) => props.theme.colors.lightest};
+    background-color: ${({ theme }) => theme.colors.lightest};
 }
+#root {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 a{
     text-decoration: none;
     color: inherit;
