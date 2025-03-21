@@ -62,8 +62,7 @@ const fontStyles = {
   Body5: css`
     ${fontPrimary}
     font-size: 1.8rem;
-    font-weight: 400;
-    letter-spacing: -0.36px;
+    font-weight: 300;
   `,
 };
 
