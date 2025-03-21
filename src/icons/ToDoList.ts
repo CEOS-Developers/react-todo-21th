@@ -1,7 +1,13 @@
 import styled from 'styled-components';
 
+import postit from '@/assets/post-it.svg?react';
 import sendIcon from '@/assets/send.svg?react';
 import plusIcon from '@/assets/plus.svg?react';
+
+export const PostitPaper = styled(postit)`
+  width: 70rem;
+  height: fit-content;
+`;
 
 export const SendIcon = styled(sendIcon)`
   width: 4.8rem;

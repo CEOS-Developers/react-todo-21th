@@ -1,12 +1,13 @@
+import { JSX } from 'react/jsx-runtime';
 import { useState } from 'react';
+
+import Postit from '@/components/Postit/PostIt';
 
 import { PlusIcon, SendIcon } from '@/icons/ToDoList';
 
-import postIt from '@/assets/post-it.svg';
-
 import * as S from './Register.styled';
 
-const Register = () => {
+const Register = (): JSX.Element => {
   const [task, setTask] = useState('');
 
   const handleTaskRegister = (e: React.FormEvent<HTMLFormElement>) => {
@@ -21,32 +22,26 @@ const Register = () => {
   };
 
   return (
-    <S.RegisterContainer>
-      <S.RegisterPostIt src={postIt} alt="post-it" />
-      <S.RegisterContent>
-        <S.RegisterTitleSection>
-          <S.RegisterTitle>Register</S.RegisterTitle>
-          <SendIcon />
-        </S.RegisterTitleSection>
+    <Postit>
+      <S.RegisterTitleSection>
+        <S.RegisterTitle>Register</S.RegisterTitle>
+        <SendIcon />
+      </S.RegisterTitleSection>
 
-        <S.TaskRegisterForm
-          id="task-register-form"
-          onSubmit={handleTaskRegister}
-        >
-          <S.TaskRegisterInput
-            type="text"
-            placeholder="Enter your task!"
-            value={task}
-            onChange={(e) => setTask(e.target.value)}
-            autoFocus
-          />
-          <S.TaskRegisterButton type="submit">
-            <PlusIcon />
-            Add
-          </S.TaskRegisterButton>
-        </S.TaskRegisterForm>
-      </S.RegisterContent>
-    </S.RegisterContainer>
+      <S.TaskRegisterForm id="task-register-form" onSubmit={handleTaskRegister}>
+        <S.TaskRegisterInput
+          type="text"
+          placeholder="Enter your task!"
+          value={task}
+          onChange={(e) => setTask(e.target.value)}
+          autoFocus
+        />
+        <S.TaskRegisterButton type="submit">
+          <PlusIcon />
+          Add
+        </S.TaskRegisterButton>
+      </S.TaskRegisterForm>
+    </Postit>
   );
 };
 

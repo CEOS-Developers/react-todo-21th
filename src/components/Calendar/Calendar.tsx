@@ -1,3 +1,4 @@
+import { JSX } from 'react/jsx-runtime';
 import { useState } from 'react';
 
 import { CalendarIcon } from '@/icons/Calendar';
@@ -9,7 +10,7 @@ import { generateCalendar } from '@/utils/generateCalender';
 
 import * as S from './Calendar.styled';
 
-const Calendar = () => {
+const Calendar = (): JSX.Element => {
   const [currentDate, setCurrentDate] = useState({
     year: 2025,
     month: 3,
