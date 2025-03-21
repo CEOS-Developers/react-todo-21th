@@ -25,11 +25,6 @@ const TodoListPage = ({ toggleTheme, theme }) => {
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
-
-    const count = (todos[date.selectedDate] || []).filter(
-      (todo) => !todo.completed
-    ).length;
-    setIncompleteCount(count);
   }, [todos]);
 
   useEffect(() => {
@@ -37,7 +32,7 @@ const TodoListPage = ({ toggleTheme, theme }) => {
       (todo) => !todo.completed
     ).length;
     setIncompleteCount(count);
-  }, [date.selectedDate]);
+  }, [todos, date.selectedDate]);
 
   const addTodoItem = (todoText) => {
     if (todoInput.trim() === "") {
