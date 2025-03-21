@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as S from './SideBar.Styled';
 import ToggleButton from '@/components/ToggleButton/ToggleButton';
 import useCompletedTodos from '@/hooks/useCompletedTodos';
@@ -14,16 +15,30 @@ const SideBar = ({ onClose, toggleTheme, themeMode }: SideBarProps) => {
   const today = new Date();
   const todayDay = getDayOfWeek(today);
 
-  /* 사이드바 바깥 클릭 시 닫기 */
+  const [isClosing, setIsClosing] = useState(false);
+
+  // 닫기 애니메이션 후 언마운트
+  const handleClose = () => {
+    setIsClosing(true);
+    setTimeout(() => {
+      onClose();
+    }, 300);
+  };
+
   const handleOutsideClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) onClose();
+    if (e.target === e.currentTarget) handleClose();
   };
 
   return (
     <S.Overlay onClick={handleOutsideClick}>
-      <S.Container onClick={(e: any) => e.stopPropagation()}>
+      <S.Container
+        style={{
+          animation: isClosing ? 'slideOut 0.3s ease forwards' : undefined,
+        }}
+        onClick={(e: any) => e.stopPropagation()}
+      >
         <S.ButtonBox>
-          <S.CloseButton onClick={onClose}>x</S.CloseButton>
+          <S.CloseButton onClick={handleClose}>x</S.CloseButton>
           <ToggleButton isChecked={themeMode === 'dark'} onToggle={toggleTheme} />
         </S.ButtonBox>
         <S.StatsBox>

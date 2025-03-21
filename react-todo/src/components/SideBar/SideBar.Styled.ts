@@ -13,6 +13,22 @@ export const Container = styled.div`
   height: 100%;
   background: ${({ theme }) => theme.colors.sidebarBg};
   transition: background 0.3s ease;
+  transform: translateX(-100%);
+  animation: slideIn 0.3s ease forwards;
+
+  @keyframes slideIn {
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes slideOut {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
 `;
 
 export const ButtonBox = styled.div`
@@ -43,6 +59,16 @@ export const Overlay = styled.div`
   justify-content: flex-start;
   align-items: center;
   z-index: 99;
+  animation: fadeIn 0.3s ease;
+
+  @keyframes fadeIn {
+    from {
+      background-color: rgba(0, 0, 0, 0);
+    }
+    to {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
+  }
 `;
 
 export const StatsBox = styled.div`
