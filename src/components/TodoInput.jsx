@@ -2,9 +2,14 @@ import { useState } from "react";
 import styled from "styled-components";
 import AddIcon from "@/assets/images/AddIcon.svg?react";
 
-const TodoInput = ({ todoInput, setTodoInput, addTodoItem }) => {
+const TodoInput = ({
+  todoInput,
+  setTodoInput,
+  addTodoItem,
+  addDisabled,
+  setAddDisabled,
+}) => {
   const [isComposing, setIsComposing] = useState(false);
-  const [disabled, setDisabled] = useState(true);
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && !isComposing) {
@@ -15,7 +20,7 @@ const TodoInput = ({ todoInput, setTodoInput, addTodoItem }) => {
 
   const handleOnChange = (e) => {
     setTodoInput(e.target.value);
-    setDisabled(e.target.value.trim().length === 0);
+    setAddDisabled(e.target.value.trim().length === 0);
   };
 
   return (
@@ -28,7 +33,7 @@ const TodoInput = ({ todoInput, setTodoInput, addTodoItem }) => {
         onCompositionStart={() => setIsComposing(true)}
         onCompositionEnd={() => setIsComposing(false)}
       />
-      <AddButton onClick={() => addTodoItem(todoInput)} disabled={disabled}>
+      <AddButton onClick={() => addTodoItem(todoInput)} disabled={addDisabled}>
         추가
       </AddButton>
     </TodoInputSection>

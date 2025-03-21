@@ -16,6 +16,7 @@ const TodoListPage = ({ toggleTheme }) => {
   const [incompleteCount, setIncompleteCount] = useState(0);
   const [todoInput, setTodoInput] = useState("");
   const [todos, setTodos] = useState({});
+  const [addDisabled, setAddDisabled] = useState(true);
 
   useEffect(() => {
     setTodos(JSON.parse(localStorage.getItem("todos")) || {});
@@ -54,10 +55,23 @@ const TodoListPage = ({ toggleTheme }) => {
         updatedTodos[date.selectedDate] = [];
       }
       updatedTodos[date.selectedDate].push(newTodo);
+
       return updatedTodos;
     });
 
     setTodoInput("");
+    setAddDisabled(true);
+  };
+
+  const handleClickComplete = (todo) => {
+    setTodos((prevTodos) => {
+      const updatedTodos = { ...prevTodos };
+      updatedTodos[date.selectedDate] = updatedTodos[date.selectedDate].map(
+        (item) =>
+          item.id === todo.id ? { ...item, completed: !item.completed } : item
+      );
+      return updatedTodos;
+    });
   };
 
   const handleClickDelete = (todo) => {
@@ -92,10 +106,13 @@ const TodoListPage = ({ toggleTheme }) => {
             todoInput={todoInput}
             setTodoInput={setTodoInput}
             addTodoItem={addTodoItem}
+            addDisabled={addDisabled}
+            setAddDisabled={setAddDisabled}
           />
           <TodoList
             todos={todos}
             date={date}
+            handleClickComplete={handleClickComplete}
             handleClickDelete={handleClickDelete}
           />
         </Content>
