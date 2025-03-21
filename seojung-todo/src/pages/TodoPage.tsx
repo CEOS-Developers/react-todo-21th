@@ -1,8 +1,47 @@
 import * as s from "./TodoPageStyled";
 import TodoInput from "../components/TodoInput/TodoInput";
 import SingleTodoList from "../components/TodoList/SingleTodoList";
+import { initialTodos, initialTagData } from "../assets/data";
+import { useState, useEffect } from "react";
+import { Todos, Tags } from "../interface";
 
 const TodoPage = () => {
+  const [todos, setTodos] = useState<Todos[]>(() => {
+    // 로컬 스토리지에서 데이터 가져오기 (없으면 초기값 사용)
+    const storedTodos = localStorage.getItem("todos");
+    return storedTodos ? JSON.parse(storedTodos) : initialTodos;
+  });
+
+  const [tags, setTags] = useState<Tags[]>(() => {
+    // 로컬 스토리지에서 데이터 가져오기 (없으면 초기값 사용)
+    const storedTags = localStorage.getItem("tags");
+    return storedTags ? JSON.parse(storedTags) : initialTagData;
+  });
+
+  // todos 변경 시 로컬 스토리지 업데이트
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
+  // 초기화
+  // useEffect(() => {
+  //   localStorage.setItem("todos", JSON.stringify(initialTodos));
+  //   localStorage.setItem("tags", JSON.stringify(initialTagData));
+  // });
+
+  //태그 변경 시 로컬 스토리지 업데이트
+  useEffect(() => {
+    localStorage.setItem("tags", JSON.stringify(tags));
+  }, [tags]);
+
+  const getTodosByTag = (tagName: string) => {
+    const existingIndex = todos.findIndex((data) => data.tag === tagName);
+    if (existingIndex == -1) {
+      return [];
+    } else {
+      return todos[existingIndex].todos;
+    }
+  };
+
   return (
     <s.TodoPage>
       <s.TodoHeader>
@@ -14,10 +53,22 @@ const TodoPage = () => {
       </s.TodoHeader>
 
       <s.TodoBody>
-        <TodoInput />
+        <TodoInput
+          todos={todos}
+          setTodos={setTodos}
+          tags={tags}
+          setTags={setTags}
+        />
         <s.TodoListMain>
           <s.TodoContainer>
-            <SingleTodoList />
+            {tags.map((tag) => (
+              <SingleTodoList
+                tag={tag}
+                key={tag.name}
+                todos={getTodosByTag(tag.name)}
+                setTodos={setTodos}
+              />
+            ))}
           </s.TodoContainer>
         </s.TodoListMain>
       </s.TodoBody>
