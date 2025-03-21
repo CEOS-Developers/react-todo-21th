@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route} from "react-router-dom";
-import MainPage from "./pages/Calender";
+import MainPage from "./pages/Calendar";
 import DailyPage from "./pages/DailyTodo";
 import "./pages/appFont.css";
 
