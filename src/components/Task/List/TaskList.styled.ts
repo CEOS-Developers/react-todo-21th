@@ -1,8 +1,16 @@
 import styled from 'styled-components';
 
 export const TaskListSection = styled.section`
+  flex-grow: 1;
+
   width: 100%;
-  height: fit-content;
+  height: 100%;
+
+  overflow: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TaskListContainer = styled.ul`
@@ -12,4 +20,11 @@ export const TaskListContainer = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+`;
+
+export const EmptyTask = styled.p`
+  text-align: center;
+
+  ${({ theme }) => theme.fontStyles.Body5}
+  color: ${({ theme }) => theme.colors.Grayscale[200]};
 `;

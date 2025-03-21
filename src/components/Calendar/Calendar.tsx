@@ -7,6 +7,7 @@ import { LeftArrowIcon, RightArrowIcon } from '@/icons/Arrow';
 import { DAY_LIST, MONTH_NAMES } from '@/constants/calendar';
 
 import { useDate } from '@/hooks/useDate';
+import { useTasks } from '@/hooks/useTasks';
 import { generateCalendar } from '@/utils/generateCalender';
 import { formatDate } from '@/utils/formatDate';
 
@@ -14,6 +15,7 @@ import * as S from './Calendar.styled';
 
 const Calendar = (): JSX.Element => {
   const { selectedDate, setSelectedDate } = useDate();
+  const { tasksByDate } = useTasks();
 
   const [currentDate, setCurrentDate] = useState({
     year: new Date().getFullYear(),
@@ -120,7 +122,11 @@ const Calendar = (): JSX.Element => {
                   >
                     {day.date}
                   </S.DayTextBox>
-                  <S.UnLoggedCircle />
+                  {tasksByDate[day.fullDate]?.length > 0 ? (
+                    <S.LoggedCircle />
+                  ) : (
+                    <S.UnLoggedCircle />
+                  )}
                 </S.CalendarGridItemLink>
               </S.CalendarGridItem>
             ))}

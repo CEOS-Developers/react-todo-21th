@@ -1,14 +1,23 @@
 import { JSX } from 'react/jsx-runtime';
 import { useState } from 'react';
 
-import Postit from '@/components/Postit/PostIt';
-
+import Postit from '@/components/Postit/Postit';
 import { PlusIcon, SendIcon } from '@/icons/ToDoList';
+
+import { useTasks } from '@/hooks/useTasks';
+import { useDate } from '@/hooks/useDate';
 
 import * as S from './Register.styled';
 
 const Register = (): JSX.Element => {
-  const [task, setTask] = useState('');
+  const [task, setTask] = useState<string>('');
+
+  const { addTask } = useTasks();
+  const { selectedDate } = useDate();
+
+  const handleTaskChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTask(e.target.value);
+  };
 
   const handleTaskRegister = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,7 +27,8 @@ const Register = (): JSX.Element => {
       return;
     }
 
-    // TODO: 태스크 등록 로직 구현
+    addTask(selectedDate, task);
+    setTask('');
   };
 
   return (
@@ -33,7 +43,7 @@ const Register = (): JSX.Element => {
           type="text"
           placeholder="Enter your task!"
           value={task}
-          onChange={(e) => setTask(e.target.value)}
+          onChange={handleTaskChange}
           autoFocus
         />
         <S.TaskRegisterButton type="submit">

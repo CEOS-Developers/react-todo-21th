@@ -2,7 +2,7 @@ import { JSX } from 'react/jsx-runtime';
 
 import { PostitPaper } from '@/icons/ToDoList';
 
-import * as S from './PostIt.styled';
+import * as S from './Postit.styled';
 
 type PostItProps = {
   children: React.ReactNode;
