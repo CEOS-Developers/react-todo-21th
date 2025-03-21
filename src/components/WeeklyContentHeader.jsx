@@ -12,7 +12,7 @@ const WeeklyContentHeader = () => {
   return (
     <div>
       <HeadTitle>Weekly Check</HeadTitle>
-      <SubTitle clickable="true" onClick={onClickDate}>
+      <SubTitle $clickable={true} onClick={onClickDate}>
         {`${dateObj.getFullYear()}년 ${month}월 ${week}째 주`}
       </SubTitle>
     </div>

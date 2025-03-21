@@ -6,7 +6,7 @@ const HeadTitle = styled.h1`
   color: ${(props) => props.theme.colors.darker};
   font-weight: 600;
 
-  ${(props) => props.clickable && ClickableStyle}
+  ${(props) => props.$clickable && ClickableStyle}
 `
 
 const SubTitle = styled.h2`
@@ -16,6 +16,6 @@ const SubTitle = styled.h2`
   font-size: 1rem;
   display: inline-block;
 
-  ${(props) => props.clickable && ClickableStyle};
+  ${(props) => props.$clickable && ClickableStyle};
 `
 export { HeadTitle, SubTitle }

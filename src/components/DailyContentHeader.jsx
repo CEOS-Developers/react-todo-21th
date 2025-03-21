@@ -20,11 +20,11 @@ const DailyContentHeader = () => {
 
   return (
     <div>
-      <SubTitle clickable="true" onClick={onClickDate}>
+      <SubTitle $clickable={true} onClick={onClickDate}>
         {year}
       </SubTitle>
       <FlexContainerRow>
-        <HeadTitle clickable="true" onClick={onClickDate}>
+        <HeadTitle $clickable={true} onClick={onClickDate}>
           {`${month} ${date} ${day}`}
         </HeadTitle>
         <HeadTitle
