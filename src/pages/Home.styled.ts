@@ -8,3 +8,12 @@ export const HomeContainer = styled.div`
   display: flex;
   gap: 6.4rem;
 `;
+
+export const ToDoListContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2.8rem;
+`;

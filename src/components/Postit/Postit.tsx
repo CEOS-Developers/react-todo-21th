@@ -6,12 +6,13 @@ import * as S from './PostIt.styled';
 
 type PostItProps = {
   children: React.ReactNode;
+  paperColor?: string;
 };
 
-const Postit = ({ children }: PostItProps): JSX.Element => {
+const Postit = ({ children, paperColor }: PostItProps): JSX.Element => {
   return (
     <S.PostitWrapper>
-      <PostitPaper />
+      <PostitPaper $paperColor={paperColor} />
       <S.InnerContent>{children}</S.InnerContent>
     </S.PostitWrapper>
   );

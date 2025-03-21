@@ -9,14 +9,6 @@ export const PostitWrapper = styled.div`
   display: flex;
 `;
 
-export const PostItImage = styled.img`
-  width: 70rem;
-  height: fit-content;
-
-  -webkit-user-drag: none;
-  user-select: none;
-`;
-
 export const InnerContent = styled.div`
   position: absolute;
   top: 0;
