@@ -5,6 +5,10 @@ import sendIcon from '@/assets/send.svg?react';
 import plusIcon from '@/assets/plus.svg?react';
 import listIcon from '@/assets/list.svg?react';
 import doneIcon from '@/assets/done.svg?react';
+import checkboxIcon from '@/assets/checkbox.svg?react';
+import checkIcon from '@/assets/check.svg?react';
+import pencilIcon from '@/assets/pencil.svg?react';
+import trashIcon from '@/assets/trash.svg?react';
 
 export const PostitPaper = styled(postit)<{
   $paperColor?: string;
@@ -35,5 +39,30 @@ export const ListIcon = styled(listIcon)`
 
 export const DoneIcon = styled(doneIcon)`
   width: 5.4rem;
+  height: fit-content;
+`;
+
+export const CheckboxIcon = styled(checkboxIcon)`
+  width: 4rem;
+  height: fit-content;
+`;
+
+export const CheckIcon = styled(checkIcon)`
+  position: absolute;
+  top: 40%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+
+  width: 3.2rem;
+  height: fit-content;
+`;
+
+export const PencilIcon = styled(pencilIcon)`
+  width: 2.4rem;
+  height: fit-content;
+`;
+
+export const TrashIcon = styled(trashIcon)`
+  width: 2.4rem;
   height: fit-content;
 `;

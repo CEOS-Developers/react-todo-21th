@@ -1,6 +1,7 @@
 import Postit from '@/components/Postit/PostIt';
 
 import TaskCount from '../TaskCount/TaskCount';
+import TaskList from '@/components/Task/List/TaskList';
 import { ListIcon } from '@/icons/ToDoList';
 
 import * as S from './ToDo.styled';
@@ -15,6 +16,8 @@ const ToDo = () => {
         </S.ToDoTitleSection>
         <TaskCount taskCount={12} />
       </S.ToDoHeader>
+
+      <TaskList />
     </Postit>
   );
 };

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const ToDoHeader = styled.div`
   width: 100%;
   height: fit-content;
+  margin-bottom: 2.4rem;
 
   display: flex;
   justify-content: space-between;
