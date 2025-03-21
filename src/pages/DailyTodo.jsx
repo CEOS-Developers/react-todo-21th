@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import Update from "../utils/UpdateTodo";
+import Update from "./UpdateTodo";
 import { useParams, useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/dateFormatter";
 

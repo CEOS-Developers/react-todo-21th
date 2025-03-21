@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledHeader } from "./HeaderStyles";
+import { StyledHeader } from "../styles/HeaderStyles";
 
 function Header({ title, onClick }) {
   return (

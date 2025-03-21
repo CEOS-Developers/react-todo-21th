@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { formatDate } from "./dateFormatter";
+import { formatDate } from "../utils/dateFormatter";
 import { countCompletedTodos, countPendingTodos } from "../utils/CountTodo";
+import {
+  UpdateWrapper,
+  CurrentDate,
+  CountTodo,
+  InputSection,
+  TodoList,
+} from "../styles/UpdateStyles";
 
 function Update({ todos, setTodos, date }) {
   const [inputValue, setInputValue] = useState("");
@@ -51,15 +58,15 @@ function Update({ todos, setTodos, date }) {
   };
 
   return (
-    <div>
-      <div id="currentDate">{date}</div>
+    <UpdateWrapper>
+      <CurrentDate>{date}</CurrentDate>
 
-      <section id="countTodo">
+      <CountTodo>
         <p>완료된 할 일: {countCompletedTodos(todos)}</p>
         <p>미완료 할 일: {countPendingTodos(todos)}</p>
-      </section>
+      </CountTodo>
 
-      <section>
+      <InputSection>
         <input
           type="text"
           placeholder="할 일을 입력하세요"
@@ -68,9 +75,9 @@ function Update({ todos, setTodos, date }) {
           onKeyDown={handleKeyDown}
         />
         <button onClick={addTodo}>추가</button>
-      </section>
+      </InputSection>
 
-      <section>
+      <TodoList>
         <ul>
           {todos.map((todo, index) => (
             <li key={index}>
@@ -84,8 +91,8 @@ function Update({ todos, setTodos, date }) {
             </li>
           ))}
         </ul>
-      </section>
-    </div>
+      </TodoList>
+    </UpdateWrapper>
   );
 }
 
