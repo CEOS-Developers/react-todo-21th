@@ -9,21 +9,18 @@ const GlobalStyles = createGlobalStyle`
 	@font-face {
 		font-family : 'Pretendard';
 		src : url('../src/assets/fonts/Pretendard-Regular.woff2');
-		font-weight: 400;
 		font-style: normal;
 	}
 
 	@font-face {
-		font-family : 'Pretendard';
+		font-family : 'Pretendard Bold';
 		src : url('../src/assets/fonts/Pretendard-Bold.woff2');
-		font-weight: 700;
     	font-style: normal;
 	}
 
 	@font-face {
-		font-family : 'Pretendard';
+		font-family : 'Pretendard ExtraBold';
 		src : url('../src/assets/fonts/Pretendard-ExtraBold.woff2');
-		font-weight: 800;
     	font-style: normal;
 	}
 

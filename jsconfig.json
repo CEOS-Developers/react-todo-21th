@@ -1,10 +1,11 @@
 {
     "compilerOptions": {
       "target": "ESNext",
-      "baseUrl": "src",
+      "baseUrl": "./",
       "paths": {
-        "@/*": ["src/*"]
+        "@/*": ["src/*"],
       },
+      "types": ["vite/client"],
     },
     "include": [
         "src/**/*.js", // 'src' 폴더 내에 있는 모든 JavaScript 파일 포함

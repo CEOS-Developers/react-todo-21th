@@ -6,8 +6,9 @@ import TodoList from "@/components/TodoList";
 
 import { formatDate } from "@/utils/formatDate";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
-const TodoListPage = () => {
+const TodoListPage = ({ toggleTheme }) => {
   const [date, setDate] = useState({
     selectedDate: formatDate(),
     dayOffset: 0,
@@ -71,12 +72,21 @@ const TodoListPage = () => {
 
   return (
     <PageWrapper>
-      <MainWrapper>
+      <ThemeButton onClick={toggleTheme}>모드</ThemeButton>
+      <MainWrapper
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{
+          duration: 0.8,
+          delay: 0.5,
+          ease: [0, 0.71, 0.2, 1.01],
+        }}
+      >
         <Header>
           <Title>투두 리스트</Title>
+          <DateNavigation date={date} setDate={setDate} />
         </Header>
         <Content>
-          <DateNavigation date={date} setDate={setDate} />
           <CountTodo incompleteCount={incompleteCount} />
           <TodoInput
             todoInput={todoInput}
@@ -96,12 +106,54 @@ const TodoListPage = () => {
 
 export default TodoListPage;
 
-const PageWrapper = styled.div``;
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100dvh;
+  background-color: ${(props) => props.theme.background1};
+`;
 
-const MainWrapper = styled.main``;
+const MainWrapper = styled(motion.main)`
+  display: flex;
+  flex-direction: column;
 
-const Header = styled.header``;
+  width: 24rem;
 
-const Title = styled.h1``;
+  border-radius: 1rem;
 
-const Content = styled.section``;
+  padding: 1.5rem;
+  gap: 1rem;
+
+  background-color: ${(props) => props.theme.background2};
+  color: ${(props) => props.theme.mainText};
+`;
+
+const Header = styled.header`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  position: relative;
+
+  gap: 12px;
+`;
+
+const Title = styled.h1`
+  font-size: 1.75rem;
+  font-family: "Pretendard ExtraBold";
+`;
+
+const ThemeButton = styled.button`
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+`;
+
+const Content = styled.section`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;

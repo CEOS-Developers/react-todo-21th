@@ -6,4 +6,8 @@ const CountTodo = ({ incompleteCount }) => {
 
 export default CountTodo;
 
-const CountTodoContainer = styled.span``;
+const CountTodoContainer = styled.span`
+  display: flex;
+  justify-content: end;
+  font-size: 1rem;
+`;
