@@ -59,16 +59,6 @@ export const Overlay = styled.div`
   justify-content: flex-start;
   align-items: center;
   z-index: 99;
-  animation: fadeIn 0.3s ease;
-
-  @keyframes fadeIn {
-    from {
-      background-color: rgba(0, 0, 0, 0);
-    }
-    to {
-      background-color: rgba(0, 0, 0, 0.3);
-    }
-  }
 `;
 
 export const StatsBox = styled.div`
