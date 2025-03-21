@@ -18,7 +18,7 @@ function App() {
     <>
       <ThemeProvider theme={theme === "light" ? LightTheme : DarkTheme}>
         <GlobalStyles />
-        <TodoListPage toggleTheme={toggleTheme} />
+        <TodoListPage toggleTheme={toggleTheme} theme={theme} />
       </ThemeProvider>
     </>
   );

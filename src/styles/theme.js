@@ -10,15 +10,19 @@ export const LightTheme = {
     subText: "#815056",
     checked: "#b08288",
     disabled: "#C49399",
+    toggle: "#FFFFFF",
+    toggleBg: "#815056",
     color: { ...basic },
 }
 
 export const DarkTheme = {
-    background1: '#1F1A24',
+    background1: '#3a3540',
     background2: '#25252d',
     mainText: '#FFFFFF',
     subText: "#ded7d7",
-    checked: "#4d4d4d",
+    checked: "#968b8d",
     disabled: "#C4C4C4",
+    toggle: "#ded7d7",
+    toggleBg: "#000000",
     color: { ...basic },
 }

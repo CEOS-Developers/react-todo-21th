@@ -7,8 +7,9 @@ import TodoList from "@/components/TodoList";
 import { formatDate } from "@/utils/formatDate";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import ThemeToggle from "@/components/ThemeToggle";
 
-const TodoListPage = ({ toggleTheme }) => {
+const TodoListPage = ({ toggleTheme, theme }) => {
   const [date, setDate] = useState({
     selectedDate: formatDate(),
     dayOffset: 0,
@@ -86,7 +87,9 @@ const TodoListPage = ({ toggleTheme }) => {
 
   return (
     <PageWrapper>
-      <ThemeButton onClick={toggleTheme}>모드</ThemeButton>
+      <ThemeToggleWrapper>
+        <ThemeToggle onClick={toggleTheme} theme={theme} />
+      </ThemeToggleWrapper>
       <MainWrapper
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -125,6 +128,7 @@ export default TodoListPage;
 
 const PageWrapper = styled.div`
   display: flex;
+  position: relative;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -133,14 +137,20 @@ const PageWrapper = styled.div`
   background-color: ${(props) => props.theme.background1};
 `;
 
+const ThemeToggleWrapper = styled.span`
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+`;
+
 const MainWrapper = styled(motion.main)`
   display: flex;
   flex-direction: column;
-
   width: 24rem;
-
+  max-height: 80dvh;
   border-radius: 1rem;
-
+  overflow-x: hidden;
+  overflow-y: scroll;
   padding: 1.5rem;
   gap: 1rem;
 
@@ -153,20 +163,12 @@ const Header = styled.header`
   flex-direction: column;
   align-items: center;
 
-  position: relative;
-
   gap: 12px;
 `;
 
 const Title = styled.h1`
   font-size: 1.75rem;
   font-family: "Pretendard ExtraBold";
-`;
-
-const ThemeButton = styled.button`
-  position: absolute;
-  top: 2rem;
-  right: 2rem;
 `;
 
 const Content = styled.section`
