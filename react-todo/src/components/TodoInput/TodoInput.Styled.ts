@@ -32,3 +32,28 @@ export const EnterButton = styled.button`
   font-weight: 600;
   font-size: 14px;
 `;
+
+export const CalendarWrapper = styled.div`
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 5px;
+
+  input[type='date'] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    cursor: pointer;
+  }
+`;
+
+export const CalendarIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;

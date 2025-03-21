@@ -1,5 +1,8 @@
 /** 날짜를 'YYYY년 M월 D일' 형식으로 반환 */
-export const getFormattedDate = (date: Date = new Date()): string => {
+export const getFormattedDate = (date: Date = new Date(), format: 'ko-KR' | 'yyyy-MM-dd' = 'ko-KR'): string => {
+  if (format === 'yyyy-MM-dd') {
+    return date.toISOString().split('T')[0]; // 'YYYY-MM-DD' 형식 반환
+  }
   return date.toLocaleDateString('ko-KR', {
     year: 'numeric',
     month: 'long',

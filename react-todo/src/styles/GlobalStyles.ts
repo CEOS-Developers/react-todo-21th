@@ -10,6 +10,7 @@ const GlobalStyles = createGlobalStyle`
 
     *{
         box-sizing: border-box;
+        font-family: 'Pretendard';
     }
 
     html, body, div, span, h1, h2, h3, h4, h5, h6, p, 
@@ -29,8 +30,6 @@ const GlobalStyles = createGlobalStyle`
         display: flex; 
         flex-direction: column;
         justify-content: center;
-
-        font-family: 'Pretendard';
         line-height: 1;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -38,17 +37,6 @@ const GlobalStyles = createGlobalStyle`
         &::-webkit-scrollbar {
             display: none; /* 웹 브라우저에서 스크롤 바 숨기기 */
         }
-    }
-
-
-    ol, ul{
-        list-style: none;
-    }
-    
-    a{
-        text-decoration: none;
-        color: inherit;
-        cursor: pointer;
     }
 
     button {

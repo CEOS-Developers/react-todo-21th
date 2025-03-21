@@ -32,7 +32,7 @@ const Home = ({ themeMode, toggleTheme }: { themeMode: 'light' | 'dark'; toggleT
           <S.DayButton onClick={() => changeDate(1, currentDate, setCurrentDate)}>▶</S.DayButton>
           <S.WeekButton onClick={() => changeDate(7, currentDate, setCurrentDate)}>▶▶</S.WeekButton>
         </S.DateSection>
-        <TodoInput addTodo={(text) => addTodo(text, todos, currentDate, setTodos)} />
+        <TodoInput addTodo={(text) => addTodo(text, todos, currentDate, setTodos)} setCurrentDate={setCurrentDate} />{' '}
         <S.ItemContainer>
           {todos.map((todo, index) => (
             <TodoItem
