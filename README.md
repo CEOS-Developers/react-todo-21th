@@ -50,23 +50,23 @@
 
 ## 필수 요구사항
 
-⭕️ 1주차 미션의 결과물을 그대로 React로 구현합니다. (‼️ todo / done 개수 잊지 마세요 ‼️)
-⭕️ Styled-Component를 사용합니다.
-[참고\_Sunny Yoon](https://joong-sunny.github.io/javascript/styled-components/)
-[참고\_DaleSeo](https://www.daleseo.com/react-styled-components/)
-⭕️ React Hooks만을 사용해 상태를 관리합니다.(전역 상태관리 라이브러리 사용 XX)
+⭕️ 1주차 미션의 결과물을 그대로 React로 구현합니다. (‼️ todo / done 개수 잊지 마세요 ‼️)  
+⭕️ Styled-Component를 사용합니다.  
+[참고\_Sunny Yoon](https://joong-sunny.github.io/javascript/styled-components/)  
+[참고\_DaleSeo](https://www.daleseo.com/react-styled-components/)  
+⭕️ React Hooks만을 사용해 상태를 관리합니다.(전역 상태관리 라이브러리 사용 XX)  
 ⭕️ Vite를 활용하여 React 프로젝트 환경 구축을 진행합니다
 
 ## 선택 요건
 
-⭕️ 기존 Todo-list에 여러분들이 추가하고 싶은 기능과 디자인을 자유롭게 추가해보세요.
+⭕️ 기존 Todo-list에 여러분들이 추가하고 싶은 기능과 디자인을 자유롭게 추가해보세요.  
 ❌ TypeScript를 활용하여 프로젝트를 진행해보세요.
 
 ## 로컬 실행방법
 
 ---
 
-`npm install`
+`npm install`  
 `npm run dev`
 
 # 링크 및 참고자료
