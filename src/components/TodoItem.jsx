@@ -17,8 +17,10 @@ const StyledDiv = styled.div`
 const MainContent = styled.div`
   flex-grow: 1;
 
-  color: ${({ isFinished, theme }) => (isFinished ? theme.colors.lightStroke : 'black')};
-  text-decoration: ${({ isFinished }) => (isFinished ? 'line-through' : 'none')};
+  color: ${({ $isFinished, theme }) =>
+    $isFinished ? theme.colors.lightStroke : 'black'};
+  text-decoration: ${({ $isFinished }) =>
+    $isFinished ? 'line-through' : 'none'};
 `
 
 const TodoItem = ({ id, content, isFinished }) => {
@@ -41,7 +43,7 @@ const TodoItem = ({ id, content, isFinished }) => {
           <CircleDashed />
         </Icon>
       )}
-      <MainContent isFinished={isFinished ? 'true' : ''}>{content}</MainContent>
+      <MainContent $isFinished={isFinished}>{content}</MainContent>
       <Icon onClick={onClickDeleteButton} color={theme.colors.darkStroke}>
         <X />
       </Icon>
