@@ -11,7 +11,7 @@ export const LightTheme = {
     checked: "#b08288",
     disabled: "#C49399",
     toggle: "#FFFFFF",
-    toggleBg: "#815056",
+    toggleBg: "#AB4E59",
     color: { ...basic },
 }
 

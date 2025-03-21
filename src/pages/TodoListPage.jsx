@@ -100,7 +100,7 @@ const TodoListPage = ({ toggleTheme, theme }) => {
         }}
       >
         <Header>
-          <Title>투두 리스트</Title>
+          <Title>Todo List</Title>
           <DateNavigation date={date} setDate={setDate} />
         </Header>
         <Content>
@@ -147,10 +147,7 @@ const MainWrapper = styled(motion.main)`
   display: flex;
   flex-direction: column;
   width: 24rem;
-  max-height: 80dvh;
   border-radius: 1rem;
-  overflow-x: hidden;
-  overflow-y: scroll;
   padding: 1.5rem;
   gap: 1rem;
 

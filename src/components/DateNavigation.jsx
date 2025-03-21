@@ -32,7 +32,7 @@ const DateNavigation = ({ date, setDate }) => {
       />
       <Date onClick={getToday}>{date.selectedDate}</Date>
       <DayShiftButton onClick={() => calculateDate(1)} />
-      <WeekShiftButton onClick={() => calculateDate(-7)} />
+      <WeekShiftButton onClick={() => calculateDate(7)} />
     </Navigation>
   );
 };

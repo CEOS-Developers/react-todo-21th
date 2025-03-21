@@ -45,7 +45,20 @@ export default TodoList;
 
 const TodoListSection = styled.section`
   width: 100%;
+  max-height: 50dvh;
   min-height: 24rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background: ${(props) => props.theme.subText};
+  }
+  &::-webkit-scrollbar-track {
+    background: ${(props) => props.theme.background2};
+  }
 `;
 
 const TodoListItems = styled.ul`
