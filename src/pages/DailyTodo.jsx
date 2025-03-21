@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
-import Update from "../components/UpdateTodo";
-import {useParams, useNavigate} from "react-router-dom";
+import Update from "../utils/UpdateTodo";
+import { useParams, useNavigate } from "react-router-dom";
 import { formatDate } from "../utils/dateFormatter";
 
 function DailyTodo() {
@@ -12,7 +12,7 @@ function DailyTodo() {
 
   const handleHeaderClick = () => {
     navigate("/");
-  }
+  };
 
   useEffect(() => {
     const formattedDate = formatDate(date);
@@ -24,7 +24,7 @@ function DailyTodo() {
 
   return (
     <div>
-      <Header title={`Todo List`} onClick = {handleHeaderClick} />
+      <Header title={`Todo List`} onClick={handleHeaderClick} />
       <Update todos={todos} setTodos={setTodos} date={date} />
     </div>
   );
