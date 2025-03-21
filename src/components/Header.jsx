@@ -1,13 +1,12 @@
 import React from "react";
+import { StyledHeader } from "./HeaderStyles";
 
-function Header({title, onClick}){
+function Header({ title, onClick }) {
   return (
-    <main>
-      <header id="header" onClick={onClick} style={{cusor:'pointer'}}>
-        <h1>{title}</h1>
-      </header>
-    </main>
+    <StyledHeader onClick={onClick} style={{ cursor: "pointer" }}>
+      <h1>{title}</h1>
+    </StyledHeader>
   );
-};
+}
 
 export default Header;
