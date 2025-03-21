@@ -6,29 +6,36 @@ import { LeftArrowIcon, RightArrowIcon } from '@/icons/Arrow';
 
 import { DAY_LIST, MONTH_NAMES } from '@/constants/calendar';
 
+import { useDate } from '@/hooks/useDate';
 import { generateCalendar } from '@/utils/generateCalender';
+import { formatDate } from '@/utils/formatDate';
 
 import * as S from './Calendar.styled';
 
 const Calendar = (): JSX.Element => {
+  const { selectedDate, setSelectedDate } = useDate();
+
   const [currentDate, setCurrentDate] = useState({
-    year: 2025,
-    month: 3,
-    day: 20,
+    year: new Date().getFullYear(),
+    month: new Date().getMonth() + 1,
+    day: new Date().getDate(),
   });
 
   const currentMonthName = MONTH_NAMES[currentDate.month - 1];
-
   const calendarDays = generateCalendar(currentDate.year, currentDate.month);
 
   const handlePrevMonth = () => {
     if (currentDate.month === 1) {
-      return setCurrentDate({
+      setCurrentDate({
         ...currentDate,
         year: currentDate.year - 1,
         month: 12,
         day: 1,
       });
+
+      setSelectedDate(formatDate(currentDate.year - 1, 1, 1));
+
+      return;
     }
 
     setCurrentDate({
@@ -36,16 +43,22 @@ const Calendar = (): JSX.Element => {
       month: currentDate.month - 1,
       day: 1,
     });
+
+    setSelectedDate(formatDate(currentDate.year, currentDate.month - 1, 1));
   };
 
   const handleNextMonth = () => {
     if (currentDate.month === 12) {
-      return setCurrentDate({
+      setCurrentDate({
         ...currentDate,
         year: currentDate.year + 1,
         month: 1,
         day: 1,
       });
+
+      setSelectedDate(formatDate(currentDate.year + 1, 1, 1));
+
+      return;
     }
 
     setCurrentDate({
@@ -53,13 +66,12 @@ const Calendar = (): JSX.Element => {
       month: currentDate.month + 1,
       day: 1,
     });
+
+    setSelectedDate(formatDate(currentDate.year, currentDate.month + 1, 1));
   };
 
-  const handleDaySelect = (day: number) => {
-    setCurrentDate({
-      ...currentDate,
-      day,
-    });
+  const handleDaySelect = (day: string) => {
+    setSelectedDate(day);
   };
 
   return (
@@ -68,6 +80,7 @@ const Calendar = (): JSX.Element => {
       <S.CalendarTitleSection>
         <S.CalendarTitle>Calendar</S.CalendarTitle>
         <CalendarIcon />
+        {selectedDate}
       </S.CalendarTitleSection>
 
       {/* Date Picker */}
@@ -99,14 +112,11 @@ const Calendar = (): JSX.Element => {
             {calendarDays.map((day, index) => (
               <S.CalendarGridItem key={index}>
                 <S.CalendarGridItemLink
-                  onClick={() => handleDaySelect(day.date)}
+                  onClick={() => handleDaySelect(day.fullDate)}
                 >
                   <S.DayTextBox
                     $isCurrentMonthDay={day.monthType === 'current'}
-                    $isSelected={
-                      day.monthType === 'current' &&
-                      currentDate.day === day.date
-                    }
+                    $isSelected={day.fullDate === selectedDate}
                   >
                     {day.date}
                   </S.DayTextBox>
