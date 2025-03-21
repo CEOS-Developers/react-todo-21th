@@ -11,7 +11,7 @@ export const CalendarTile = styled.div`
 
 export const CalendarWrapper = styled.div`
   background-color: #222;;
-  color: white;
+  color: black;
   min-height: 100vh;
   padding: 20px;
 `;
@@ -22,4 +22,8 @@ export const CalendarSection = styled.section`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+
+  p{
+    color: white;
+  }
 `
