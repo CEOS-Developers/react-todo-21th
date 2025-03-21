@@ -6,10 +6,10 @@ const Container = styled.div`
   box-shadow: ${({ theme }) => theme.shadow};
   padding: 25px;
   width: ${({ width }) => (width ? width : 'auto')};
-  height: 100%;
 
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
   gap: 20px;
 `
 
