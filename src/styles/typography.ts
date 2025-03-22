@@ -24,13 +24,13 @@ const fontSecondary = css`
 const fontStyles = {
   Header1: css`
     ${fontPrimary}
-    font-size: 4.8rem;
+    font-size: clamp(3.2rem, 2.4vw ,4.8rem);
     font-weight: 600;
     letter-spacing: -0.96px;
   `,
   Header2: css`
     ${fontPrimary}
-    font-size: 3.2rem;
+    font-size: clamp(1.8rem, 1.6vw, 2.8rem);
     font-weight: 500;
   `,
   Header3: css`
@@ -40,8 +40,8 @@ const fontStyles = {
   `,
   Body1: css`
     ${fontPrimary}
-    font-size: 2.8rem;
-    font-weight: 600;
+    font-size: clamp(1.6rem, 1.4vw, 2.8rem);
+    font-weight: 500;
   `,
   Body2: css`
     ${fontSecondary}
@@ -56,8 +56,8 @@ const fontStyles = {
   `,
   Body4: css`
     ${fontPrimary}
-    font-size: 2rem;
-    font-weight: 500;
+    font-size: clamp(1.4rem, 1.2vw, 2rem);
+    font-weight: 400;
   `,
   Body5: css`
     ${fontPrimary}

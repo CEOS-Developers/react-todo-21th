@@ -41,6 +41,8 @@ li {
 input {
   background: none;
   outline: none;
+  border: none;
+  
 }
 
 input[type='checkbox'] {
