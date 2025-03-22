@@ -15,9 +15,20 @@ export const TodoListWrapper = styled.section<{ $bg: string }>`
   &:hover {
     transform: translateY(-3px);
   }
+  > div {
+    display: flex;
+    justify-content: space-between;
+    background: none;
+    margin-bottom: 1rem;
+  }
+  > div > button {
+    font-size: 0.7rem;
+    color: ${theme.subText};
+    margin: 0 10px;
+    background: none;
+  }
   h2 {
     font-size: 1.1rem;
-    margin-bottom: 1rem;
     text-align: left;
     color: ${theme.text};
     font-weight: 500;

@@ -23,7 +23,7 @@ const TodoPage = () => {
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
-  // 초기화
+  // 초기화;
   // useEffect(() => {
   //   localStorage.setItem("todos", JSON.stringify(initialTodos));
   //   localStorage.setItem("tags", JSON.stringify(initialTagData));
@@ -86,6 +86,7 @@ const TodoPage = () => {
                 key={tag.name}
                 todos={getTodosByTag(tag.name)}
                 setTodos={setTodos}
+                setTags={setTags}
               />
             ))}
           </s.TodoContainer>
