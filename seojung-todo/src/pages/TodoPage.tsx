@@ -4,6 +4,7 @@ import SingleTodoList from "../components/TodoList/SingleTodoList";
 import { initialTodos, initialTagData } from "../assets/data";
 import { useState, useEffect } from "react";
 import { Todos, Tags } from "../interface";
+import { isToday } from "../utils/date";
 
 const TodoPage = () => {
   const [todos, setTodos] = useState<Todos[]>(() => {
@@ -28,6 +29,22 @@ const TodoPage = () => {
   //   localStorage.setItem("tags", JSON.stringify(initialTagData));
   // });
 
+  //오늘 할 일 카운트
+  const todayTodos = todos
+    .flatMap((t) => t.todos)
+    .filter((todo) => todo.date && isToday(new Date(todo.date)));
+
+  const completedCount = todayTodos.filter((todo) => todo.isComplete).length;
+  const todoCount = todayTodos.length - completedCount;
+
+  //오늘 날짜 반환
+  const today = new Date().toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "long",
+  });
+
   //태그 변경 시 로컬 스토리지 업데이트
   useEffect(() => {
     localStorage.setItem("tags", JSON.stringify(tags));
@@ -47,8 +64,10 @@ const TodoPage = () => {
       <s.TodoHeader>
         <h1>투두</h1>
         <div>
-          <span>오늘 날짜</span>
-          <span>오늘 할 일</span>
+          <span>{today}</span>
+          <span>
+            오늘 할 일: {todoCount}개 / 한 일: {completedCount}개
+          </span>
         </div>
       </s.TodoHeader>
 
