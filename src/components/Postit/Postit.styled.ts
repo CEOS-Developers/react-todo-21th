@@ -3,10 +3,17 @@ import styled from 'styled-components';
 export const PostitWrapper = styled.div`
   position: relative;
 
-  width: fit-content;
-  height: fit-content;
+  flex: 1;
+
+  width: 100%;
+  height: 100%;
 
   display: flex;
+`;
+
+export const PostitPaper = styled.img`
+  width: 100%;
+  height: 100%;
 `;
 
 export const InnerContent = styled.div`
@@ -17,5 +24,11 @@ export const InnerContent = styled.div`
 
   width: 100%;
   height: 100%;
-  padding: 5.6rem 6.4rem;
+  padding: 5.6rem 6.4rem 2.4rem;
+
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;

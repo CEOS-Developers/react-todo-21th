@@ -1,13 +1,19 @@
 import styled, { css } from 'styled-components';
 
 export const CalendarWrapper = styled.div`
-  width: 93.6rem;
-  height: 100%;
+  flex: 1;
+
+  width: 100%;
+  height: fit-content;
   padding: clamp(4rem, 3.6vw, 6rem) clamp(2.8rem, 3.2vw, 4.8rem)
     clamp(2.8rem, 3.2vw, 4.8rem);
 
   border-radius: 8px;
   border: 3px solid ${({ theme }) => theme.colors.Grayscale[500]};
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 // Calendar Header Section
@@ -40,6 +46,7 @@ export const CalendarTitle = styled.h1`
 
 export const SelectedFullDate = styled.span`
   min-width: 12rem;
+  text-align: center;
 
   ${({ theme }) => theme.fontStyles.Body4};
   color: ${({ theme }) => theme.colors.Grayscale[500]};
@@ -54,7 +61,7 @@ export const DatePickerSection = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5.4rem;
+  gap: clamp(2.4rem, 3.2vw, 5.4rem);
 `;
 
 export const CurrentMonthYear = styled.a`
@@ -67,8 +74,8 @@ export const CurrentMonthYear = styled.a`
 `;
 
 const PreviousNextButton = styled.button`
-  width: 3.6rem;
-  height: 3.6rem;
+  width: clamp(2.4rem, 2.4vw, 3.6rem);
+  height: clamp(2.4rem, 2.4vw, 3.6rem);
 
   display: flex;
   justify-content: center;

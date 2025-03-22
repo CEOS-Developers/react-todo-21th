@@ -42,6 +42,12 @@ export const TaskContent = styled.span<{
   ${({ theme }) => theme.fontStyles.Body5}
   color: ${({ $isCompleted, theme }) =>
     $isCompleted ? theme.colors.Grayscale[200] : theme.colors.Grayscale[500]};
+
+  overflow-x: scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 export const TaskEditInput = styled.input<{ $isEditing: boolean }>`

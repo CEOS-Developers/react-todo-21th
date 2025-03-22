@@ -13,8 +13,8 @@ import trashIcon from '@/assets/trash.svg?react';
 export const PostitPaper = styled(postit)<{
   $paperColor?: string;
 }>`
-  width: 70rem;
-  height: fit-content;
+  width: 100%;
+  height: 100%;
 
   #paper {
     fill: ${({ $paperColor, theme }) =>
