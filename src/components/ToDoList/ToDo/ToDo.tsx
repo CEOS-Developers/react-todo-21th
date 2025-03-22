@@ -1,7 +1,7 @@
 import { JSX } from 'react/jsx-runtime';
 
 import Postit from '@/components/Postit/Postit';
-import TaskCount from '../TaskCount/TaskCount';
+import TaskCount from '../../Task/Count/TaskCount';
 import TaskList from '@/components/Task/List/TaskList';
 import { ListIcon } from '@/icons/ToDoList';
 
