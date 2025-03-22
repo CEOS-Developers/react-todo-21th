@@ -63,7 +63,7 @@ function App() {
   const [pivotDate, setPivotDate] = useState(formatDate(new Date()))
 
   useEffect(() => {
-    const storedTodos = loadTodos()
+    const storedTodos = loadTodos() || {}
     updateTodos({
       type: 'INIT',
       data: storedTodos,
