@@ -69,7 +69,7 @@ const TodoPage = () => {
       )}
 
       <s.TodoHeader>
-        <h1>투두</h1>
+        <h1>TODO</h1>
         <div>
           <span>{today}</span>
           <span>

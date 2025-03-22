@@ -18,7 +18,7 @@ const TodoInput: React.FC<TodoInputProps> = ({
 }) => {
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
-  const [tag, setTag] = useState("");
+  const [tag, setTag] = useState("기본");
   const [tagInput, setTagInput] = useState("");
 
   const handleAddTodo = () => {
