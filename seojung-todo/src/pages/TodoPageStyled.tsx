@@ -33,6 +33,27 @@ export const TodoHeader = styled.header`
     margin: 0 10px;
   }
 `;
+export const CalendarButtonWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 10px 15%;
+
+  button {
+    background-color: #d1dceb;
+    color: #255a9b;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:hover {
+      background-color: #c3d3e8;
+    }
+  }
+`;
 
 export const TodoBody = styled.section`
   width: 100%;

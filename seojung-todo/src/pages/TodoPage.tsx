@@ -5,6 +5,7 @@ import { initialTodos, initialTagData } from "../assets/data";
 import { useState, useEffect } from "react";
 import { Todos, Tags } from "../interface";
 import { isToday } from "../utils/date";
+import Calender from "../components/Calender/Calender";
 
 const TodoPage = () => {
   const [todos, setTodos] = useState<Todos[]>(() => {
@@ -18,6 +19,8 @@ const TodoPage = () => {
     const storedTags = localStorage.getItem("tags");
     return storedTags ? JSON.parse(storedTags) : initialTagData;
   });
+
+  const [showCalender, setShowCalender] = useState(false);
 
   // todos 변경 시 로컬 스토리지 업데이트
   useEffect(() => {
@@ -61,6 +64,10 @@ const TodoPage = () => {
 
   return (
     <s.TodoPage>
+      {showCalender && (
+        <Calender todos={todos} onClose={() => setShowCalender(false)} />
+      )}
+
       <s.TodoHeader>
         <h1>투두</h1>
         <div>
@@ -78,6 +85,9 @@ const TodoPage = () => {
           tags={tags}
           setTags={setTags}
         />
+        <s.CalendarButtonWrapper>
+          <button onClick={() => setShowCalender(true)}>달력 보기</button>
+        </s.CalendarButtonWrapper>
         <s.TodoListMain>
           <s.TodoContainer>
             {tags.map((tag) => (
