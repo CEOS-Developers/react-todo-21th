@@ -10,7 +10,7 @@
 ## 🔗
 
 - [1주차 VanillaJS todo](https://vanilla-todo-21th-xi.vercel.app/)
-- [2주차 React todo]()
+- [2주차 React todo](https://react-todo-21th-smoky.vercel.app/)
 - [figma](https://www.figma.com/design/oUJT679EyBJYQmCJgNdgvJ/CEOS-Frontend-21-%EA%B9%80%EC%98%81%EC%84%9C?node-id=0-1&p=f&t=xkmcJ7COhkHPcN02-0)
 
 ## 미션 목표
