@@ -36,7 +36,7 @@ const WeeklyViewer = () => {
 
   return (
     <FlexContainerColumn>
-      {weekDate.map((date, idx) => (
+      {(weekDate || []).map((date, idx) => (
         <WeeklyItem
           onClick={() => onClickWeeklyItem(date)}
           key={date}
