@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ToDoHeader = styled.div`
+export const ToDoHeaderSection = styled.section`
   width: 100%;
   height: fit-content;
   margin-bottom: 2.4rem;
@@ -11,7 +11,7 @@ export const ToDoHeader = styled.div`
   gap: 2.4rem;
 `;
 
-export const ToDoTitleSection = styled.section`
+export const ToDoTitleContainer = styled.div`
   width: fit-content;
   height: fit-content;
 

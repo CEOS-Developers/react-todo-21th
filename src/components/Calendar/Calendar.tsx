@@ -78,12 +78,14 @@ const Calendar = (): JSX.Element => {
 
   return (
     <S.CalendarWrapper>
-      {/* Calendar Title */}
-      <S.CalendarTitleSection>
-        <S.CalendarTitle>Calendar</S.CalendarTitle>
-        <CalendarIcon />
-        {selectedDate}
-      </S.CalendarTitleSection>
+      {/* Calendar Header */}
+      <S.CalendarHeaderSection>
+        <S.CalendarTitleContainer>
+          <S.CalendarTitle>Calendar</S.CalendarTitle>
+          <CalendarIcon />
+        </S.CalendarTitleContainer>
+        <S.SelectedFullDate>{selectedDate}</S.SelectedFullDate>
+      </S.CalendarHeaderSection>
 
       {/* Date Picker */}
       <S.DatePickerSection>

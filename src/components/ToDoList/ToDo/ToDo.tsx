@@ -16,13 +16,13 @@ type ToDoProps = {
 const ToDo = ({ toDoList }: ToDoProps): JSX.Element => {
   return (
     <Postit paperColor="#FBF3DB">
-      <S.ToDoHeader>
-        <S.ToDoTitleSection>
+      <S.ToDoHeaderSection>
+        <S.ToDoTitleContainer>
           <S.ToDoTitle>To Do</S.ToDoTitle>
           <ListIcon />
-        </S.ToDoTitleSection>
+        </S.ToDoTitleContainer>
         <TaskCount taskCount={toDoList.length} />
-      </S.ToDoHeader>
+      </S.ToDoHeaderSection>
 
       {/* To Do List */}
       <TaskList tasks={toDoList} />

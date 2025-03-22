@@ -3,17 +3,28 @@ import styled, { css } from 'styled-components';
 export const CalendarWrapper = styled.div`
   width: 93.6rem;
   height: 100%;
-  padding: 6rem 4.8rem;
+  padding: clamp(4rem, 3.6vw, 6rem) clamp(2.8rem, 3.2vw, 4.8rem)
+    clamp(2.8rem, 3.2vw, 4.8rem);
 
   border-radius: 8px;
   border: 3px solid ${({ theme }) => theme.colors.Grayscale[500]};
 `;
 
-// Calendar Title Section
-export const CalendarTitleSection = styled.section`
-  width: fit-content;
+// Calendar Header Section
+export const CalendarHeaderSection = styled.section`
+  width: 100%;
   height: fit-content;
   margin-bottom: 3.6rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.4rem;
+`;
+
+export const CalendarTitleContainer = styled.div`
+  width: fit-content;
+  height: fit-content;
 
   display: flex;
   align-items: center;
@@ -22,6 +33,15 @@ export const CalendarTitleSection = styled.section`
 
 export const CalendarTitle = styled.h1`
   ${({ theme }) => theme.fontStyles.Header1};
+  color: ${({ theme }) => theme.colors.Grayscale[500]};
+
+  white-space: nowrap;
+`;
+
+export const SelectedFullDate = styled.span`
+  min-width: 12rem;
+
+  ${({ theme }) => theme.fontStyles.Body4};
   color: ${({ theme }) => theme.colors.Grayscale[500]};
 `;
 
@@ -38,8 +58,12 @@ export const DatePickerSection = styled.section`
 `;
 
 export const CurrentMonthYear = styled.a`
+  text-align: center;
+
   ${({ theme }) => theme.fontStyles.Body1};
   color: ${({ theme }) => theme.colors.Grayscale[500]};
+
+  white-space: nowrap;
 `;
 
 const PreviousNextButton = styled.button`
@@ -148,7 +172,7 @@ export const CalendarGridItemLink = styled.a`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.8rem;
+  gap: 0.4rem;
 `;
 
 export const DayTextBox = styled.div<{
@@ -157,6 +181,18 @@ export const DayTextBox = styled.div<{
 }>`
   position: relative;
 
+  width: clamp(3.2rem, 2.8vw, 4.6rem);
+  height: clamp(3.2rem, 2.8vw, 4.6rem);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 16px;
+
+  background: ${({ $isSelected, theme }) =>
+    $isSelected ? theme.colors.Signature.Red_500 : 'transparent'};
+
   ${({ theme }) => theme.fontStyles.Header2}
   color: ${({ $isSelected, $isCurrentMonthDay, theme }) =>
     $isSelected
@@ -164,25 +200,12 @@ export const DayTextBox = styled.div<{
       : $isCurrentMonthDay
         ? theme.colors.Grayscale[500]
         : theme.colors.Grayscale[300]};
-
-  &::before {
-    content: ${({ $isSelected }) => ($isSelected ? '""' : 'none')};
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: -1;
-    width: 5rem;
-    height: 5rem;
-    border-radius: 16px;
-    background: ${({ theme }) => theme.colors.Signature.Red_500};
-  }
 `;
 
 // Logged (UnLogged) Circle
 const Circle = css`
-  width: 4px;
-  height: 4px;
+  width: 5px;
+  height: 5px;
   border-radius: 50%;
 `;
 
