@@ -60,6 +60,12 @@ function CalendarBody({
 
 export default CalendarBody;
 
+interface DayButtonProps {
+  isToday: boolean;
+  isSelected: boolean;
+  monthOffset: number;
+}
+
 const Table = styled.table`
   width: 100%;
   border-collapse: collapse;
@@ -82,11 +88,10 @@ const Td = styled.td`
   padding: ${({ theme }) => theme.spacing.xs};
 `;
 
-const DayButton = styled.button<{
-  isToday: boolean;
-  isSelected: boolean;
-  monthOffset: number;
-}>`
+const DayButton = styled.button.withConfig({
+  shouldForwardProp: (prop) =>
+    !['isToday', 'isSelected', 'monthOffset'].includes(prop),
+})<DayButtonProps>`
   width: 100%;
   aspect-ratio: 1;
   background-color: ${({ isSelected, isToday }) =>

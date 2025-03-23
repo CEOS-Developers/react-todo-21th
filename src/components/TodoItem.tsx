@@ -22,6 +22,10 @@ function TodoItem({ todo, onToggle, onRemove }: TodoItemProps) {
 
 export default TodoItem;
 
+interface TextProps {
+  isDone: boolean;
+}
+
 const Item = styled.li`
   display: flex;
   align-items: center;
@@ -42,7 +46,9 @@ const Checkbox = styled.input`
   height: ${({ theme }) => theme.spacing.xl};
 `;
 
-const Text = styled.span<{ isDone: boolean }>`
+const Text = styled.span.withConfig({
+  shouldForwardProp: (prop) => !['isDone'].includes(prop),
+})<TextProps>`
   max-width: 100%;
   word-break: break-word;
   font-size: ${({ theme }) => theme.fontSize.base};
