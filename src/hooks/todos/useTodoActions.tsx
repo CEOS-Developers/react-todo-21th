@@ -20,8 +20,8 @@ function useTodoActions(state: UseTodoStateReturn): UseTodoActionsReturn {
       setDateTodos((prev) => ({
         ...prev,
         [dateKey]: [
-          ...(prev[dateKey] || []),
           { id: generateId(), dateKey: dateKey, text: text, isDone: false },
+          ...(prev[dateKey] || []),
         ],
       }));
     },
