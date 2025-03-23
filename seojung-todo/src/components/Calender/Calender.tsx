@@ -53,8 +53,8 @@ const Calender: React.FC<CalenderProps> = ({ todos, onClose }) => {
   const getTodosForDate = (date: Date): Todo[] => {
     const dateStr = date.toISOString().split("T")[0];
 
+    // eslint-disable-next-line prefer-const
     let result: Todo[] = [];
-    //
 
     todos.forEach((group) => {
       group.todos.forEach((todo) => {
