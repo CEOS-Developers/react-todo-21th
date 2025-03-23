@@ -1,8 +1,9 @@
 import { useMemo } from 'react';
+import { TodoStats } from '../../types/todo';
 import { UseTodoStateReturn } from './useTodoState';
 
 export interface UseTodoStatisticsReturn {
-  dateStats: Record<string, { totalCount: number; doneCount: number }>;
+  dateStats: TodoStats;
 }
 
 function useTodoStatistics(state: UseTodoStateReturn): UseTodoStatisticsReturn {

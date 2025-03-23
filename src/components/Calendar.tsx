@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Day } from '../types/day';
 import { ChangeMonth, GoToToday, SelectDateKey } from '../types/dayActions';
+import { TodoStats } from '../types/todo';
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
 
@@ -10,6 +11,7 @@ interface CalendarProps {
   thisYear: number;
   thisMonth: number;
   daysByWeek: Day[][];
+  dateStats: TodoStats;
   onChangeMonth: ChangeMonth;
   onGoToToday: GoToToday;
   onSelectDateKey: SelectDateKey;
@@ -21,6 +23,7 @@ function Calendar({
   thisYear,
   thisMonth,
   daysByWeek,
+  dateStats,
   onChangeMonth,
   onGoToToday,
   onSelectDateKey,
@@ -38,6 +41,7 @@ function Calendar({
         selectedDateKey={selectedDateKey}
         daysByWeek={daysByWeek}
         onSelectDateKey={onSelectDateKey}
+        dateStats={dateStats}
       />
     </CalendarContainer>
   );

@@ -6,3 +6,8 @@ export interface Todo {
 }
 
 export type DateTodos = Record<string, Todo[]>;
+
+export type TodoStats = Record<
+  string,
+  { totalCount: number; doneCount: number }
+>;

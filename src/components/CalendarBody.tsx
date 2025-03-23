@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { WEEKDAY } from '../constants/texts';
 import { Day } from '../types/day';
 import { SelectDateKey } from '../types/dayActions';
+import { TodoStats } from '../types/todo';
 import formatDateKey from '../utils/formatDateKey';
 
 interface CalendarBodyProps {
@@ -9,6 +10,7 @@ interface CalendarBodyProps {
   selectedDateKey: string;
   daysByWeek: Day[][];
   onSelectDateKey: SelectDateKey;
+  dateStats: TodoStats;
 }
 
 function CalendarBody({
@@ -16,6 +18,7 @@ function CalendarBody({
   selectedDateKey,
   daysByWeek,
   onSelectDateKey,
+  dateStats,
 }: CalendarBodyProps) {
   return (
     <Table>
@@ -38,6 +41,12 @@ function CalendarBody({
                   onClick={() => onSelectDateKey(day.dateKey)}
                 >
                   {day.date}
+                  {dateStats[day.dateKey] && (
+                    <StatsText>
+                      {dateStats[day.dateKey].doneCount} /
+                      {dateStats[day.dateKey].totalCount}
+                    </StatsText>
+                  )}
                 </DayButton>
               </Td>
             ))}
@@ -61,3 +70,4 @@ const DayButton = styled.button<{
   isSelected: boolean;
   monthOffset: number;
 }>``;
+const StatsText = styled.div``;

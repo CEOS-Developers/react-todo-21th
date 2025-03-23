@@ -17,6 +17,7 @@ function Home() {
         thisYear={calendarLogic.calendarDate.getFullYear()}
         thisMonth={calendarLogic.calendarDate.getMonth()}
         daysByWeek={calendarLogic.daysByWeek}
+        dateStats={dateTodos.dateStats}
         onChangeMonth={calendarLogic.changeMonth}
         onGoToToday={calendarLogic.goToToday}
         onSelectDateKey={calendarLogic.selectDateKey}
