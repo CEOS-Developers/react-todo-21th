@@ -2,6 +2,7 @@ const options: Intl.DateTimeFormatOptions = {
   year: 'numeric',
   month: 'long',
   day: 'numeric',
+  weekday: 'long',
 };
 
 function formatDateKey(date: Date): string {
