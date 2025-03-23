@@ -41,12 +41,13 @@ function CalendarBody({
                   onClick={() => onSelectDateKey(day.dateKey)}
                 >
                   {day.date}
-                  {dateStats[day.dateKey] && (
-                    <StatsText>
-                      {dateStats[day.dateKey].doneCount} /
-                      {dateStats[day.dateKey].totalCount}
-                    </StatsText>
-                  )}
+                  {dateStats[day.dateKey] &&
+                    dateStats[day.dateKey].totalCount > 0 && (
+                      <StatsText>
+                        {dateStats[day.dateKey].doneCount} /
+                        {dateStats[day.dateKey].totalCount}
+                      </StatsText>
+                    )}
                 </DayButton>
               </Td>
             ))}
