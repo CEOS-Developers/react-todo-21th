@@ -22,15 +22,15 @@ function Home() {
         onGoToToday={calendarLogic.goToToday}
         onSelectDateKey={calendarLogic.selectDateKey}
       />
-      <TodoInput
-        selectedDateKey={calendarLogic.selectedDateKey}
-        onAddTodo={dateTodos.addTodo}
-      />
       <TodoList
         dateKey={calendarLogic.selectedDateKey}
         todos={dateTodos.dateTodos[calendarLogic.selectedDateKey]}
         onToggleTodo={dateTodos.toggleTodo}
         onRemoveTodo={dateTodos.removeTodo}
+      />
+      <TodoInput
+        selectedDateKey={calendarLogic.selectedDateKey}
+        onAddTodo={dateTodos.addTodo}
       />
     </Container>
   );
