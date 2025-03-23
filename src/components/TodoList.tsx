@@ -32,4 +32,11 @@ function TodoList({
 
 export default TodoList;
 
-const List = styled.ul``;
+const List = styled.ul`
+  max-width: ${({ theme }) => theme.maxWidth};
+  max-height: 300px;
+  overflow-y: scroll;
+  margin: 0 auto;
+  border: 1px solid ${({ theme }) => theme.colors.lightGray};
+  border-radius: ${({ theme }) => theme.radius.medium};
+`;

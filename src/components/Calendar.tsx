@@ -51,4 +51,11 @@ function Calendar({
 
 export default Calendar;
 
-const CalendarContainer = styled.div``;
+const CalendarContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: ${({ theme }) => theme.maxWidth};
+  gap: ${({ theme }) => theme.spacing.md};
+  margin: 0 auto;
+  padding: ${({ theme }) => theme.spacing.lg};
+`;

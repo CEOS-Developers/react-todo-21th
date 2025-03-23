@@ -60,15 +60,61 @@ function CalendarBody({
 
 export default CalendarBody;
 
-const Table = styled.table``;
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+`;
+
 const Thead = styled.thead``;
 const Tbody = styled.tbody``;
 const Tr = styled.tr``;
-const Th = styled.th``;
-const Td = styled.td``;
+
+const Th = styled.th`
+  color: ${({ theme }) => theme.colors.gray};
+  font-size: 0.85rem;
+  padding-bottom: ${({ theme }) => theme.spacing.sm};
+`;
+
+const Td = styled.td`
+  width: ${100 / 7}%;
+  text-align: center;
+  vertical-align: top;
+  padding: ${({ theme }) => theme.spacing.xs};
+`;
+
 const DayButton = styled.button<{
   isToday: boolean;
   isSelected: boolean;
   monthOffset: number;
-}>``;
-const StatsText = styled.div``;
+}>`
+  width: 100%;
+  aspect-ratio: 1;
+  background-color: ${({ isSelected, isToday }) =>
+    isSelected
+      ? ({ theme }) => theme.colors.darkGray
+      : isToday
+        ? ({ theme }) => theme.colors.secondary
+        : 'transparent'};
+  color: ${({ isSelected, monthOffset }) =>
+    isSelected
+      ? 'white'
+      : monthOffset === 0
+        ? ({ theme }) => theme.colors.primary
+        : '#bbb'};
+  font-weight: ${({ isToday }) => (isToday ? 'bold' : 'normal')};
+  position: relative;
+  transition: background-color 0.2s ease;
+  border-radius: ${({ theme }) => theme.radius.round};
+  border: none;
+`;
+
+const StatsText = styled.div`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 0.65rem;
+  font-weight: 500;
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  width: 100%;
+  text-align: center;
+`;

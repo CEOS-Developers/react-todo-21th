@@ -22,10 +22,40 @@ function TodoItem({ todo, onToggle, onRemove }: TodoItemProps) {
 
 export default TodoItem;
 
-const Item = styled.li``;
-const Label = styled.label``;
-const Checkbox = styled.input``;
-const Text = styled.span<{ isDone: boolean }>`
-  text-decoration: ${({ isDone }) => (isDone ? 'line-through' : 'none')};
+const Item = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGray};
+  padding: ${({ theme }) => theme.spacing.sm};
 `;
-const DeleteButton = styled.button``;
+
+const Label = styled.label`
+  display: flex;
+  flex: 1;
+  align-items: center;
+  gap: ${({ theme }) => theme.spacing.sm};
+`;
+
+const Checkbox = styled.input`
+  width: ${({ theme }) => theme.spacing.xl};
+  height: ${({ theme }) => theme.spacing.xl};
+`;
+
+const Text = styled.span<{ isDone: boolean }>`
+  max-width: 100%;
+  word-break: break-word;
+  font-size: ${({ theme }) => theme.fontSize.base};
+  text-decoration: ${({ isDone }) => (isDone ? 'line-through' : 'none')};
+  color: ${({ isDone }) =>
+    isDone
+      ? ({ theme }) => theme.colors.gray
+      : ({ theme }) => theme.colors.primary};
+`;
+
+const DeleteButton = styled.button`
+  border: none;
+  background: none;
+  color: ${({ theme }) => theme.colors.danger};
+  font-size: ${({ theme }) => theme.fontSize.small};
+`;
