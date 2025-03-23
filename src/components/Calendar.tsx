@@ -4,6 +4,7 @@ import { ChangeMonth, GoToToday, SelectDateKey } from '../types/dayActions';
 import { TodoStats } from '../types/todo';
 import CalendarHeader from './CalendarHeader';
 import CalendarBody from './CalendarBody';
+import CalendarFooter from './CalendarFooter';
 
 interface CalendarProps {
   today: Date;
@@ -43,6 +44,7 @@ function Calendar({
         onSelectDateKey={onSelectDateKey}
         dateStats={dateStats}
       />
+      <CalendarFooter selectedDateKey={selectedDateKey} />
     </CalendarContainer>
   );
 }
