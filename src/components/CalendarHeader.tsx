@@ -47,4 +47,5 @@ const NavButton = styled.button`
   font-size: 1.2rem;
   border: none;
   padding: ${({ theme }) => theme.spacing.xs} ${({ theme }) => theme.spacing.sm};
+  cursor: pointer;
 `;

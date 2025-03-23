@@ -44,6 +44,7 @@ const Label = styled.label`
 const Checkbox = styled.input`
   width: ${({ theme }) => theme.spacing.xl};
   height: ${({ theme }) => theme.spacing.xl};
+  cursor: pointer;
 `;
 
 const Text = styled.span.withConfig({
@@ -64,4 +65,5 @@ const DeleteButton = styled.button`
   background: none;
   color: ${({ theme }) => theme.colors.danger};
   font-size: ${({ theme }) => theme.fontSize.small};
+  cursor: pointer;
 `;

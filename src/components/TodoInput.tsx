@@ -62,4 +62,5 @@ const AddButton = styled.button<{ disabled?: boolean }>`
   border: none;
   border-radius: ${({ theme }) => theme.radius.small};
   padding: ${({ theme }) => theme.spacing.sm} ${({ theme }) => theme.spacing.md};
+  cursor: pointer;
 `;
