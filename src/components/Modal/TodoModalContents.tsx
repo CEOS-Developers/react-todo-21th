@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   AddButton,
   AddInput,
@@ -37,7 +37,7 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
   };
 
   //할 일 추가 이벤트 핸들러
-  const handleAddTodo = useCallback(() => {
+  const handleAddTodo = () => {
     const inputEl = document.getElementById("addDataInput") as HTMLInputElement;
     const contents = inputEl.value.trim();
     if (!contents) {
@@ -53,20 +53,17 @@ const TodoModalContents = ({ date }: TodoModalContentsProps) => {
       [date]: [...todoDateList, { content: contents, isDone: false }],
     });
     inputEl.value = "";
-  }, [todoData, date, todoDateList]);
+  };
 
   //엔터키 입력 시 할 일 추가
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
-      //한글 입력 시 이벤트 무시 (중복 입력 방지)
-      if (e.isComposing) return;
-      if (e.key === "Enter") {
-        e.preventDefault();
-        handleAddTodo();
-      }
-    },
-    [handleAddTodo]
-  );
+  const handleKeyDown = (e: KeyboardEvent) => {
+    //한글 입력 시 이벤트 무시 (중복 입력 방지)
+    if (e.isComposing) return;
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleAddTodo();
+    }
+  };
   useEffect(() => {
     document.addEventListener("keydown", handleKeyDown);
     return () => {

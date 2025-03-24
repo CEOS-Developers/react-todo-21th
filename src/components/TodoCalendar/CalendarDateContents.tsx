@@ -10,7 +10,6 @@ import {
   Today,
   TodoCount,
 } from "./CalendarStyle.ts";
-import { useCallback } from "react";
 
 interface CalendarDateContentsProps {
   i: number;
@@ -40,12 +39,9 @@ const CalendarDateContents = ({
   const count = countTodo(calendarDate, i); //todoData[date]에 할 일이 있는지 확인하고 있으면 할 일 개수 반환
 
   //다른 달의 날짜인지 확인
-  const isOtherMonthDate = useCallback(
-    (index: number) => {
-      return index < firstDateIndex || index > lastDateIndex ? true : false;
-    },
-    [firstDateIndex, lastDateIndex]
-  );
+  const isOtherMonthDate = (index: number) => {
+    return index < firstDateIndex || index > lastDateIndex ? true : false;
+  };
 
   //날짜 변환 함수(미리 선언)
   function transDate(calandarDate: number, index: number) {
