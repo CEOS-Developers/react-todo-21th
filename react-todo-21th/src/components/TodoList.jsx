@@ -39,7 +39,11 @@ const TodoList = ({ selectedDate, todos, addTodo, deleteTodo, toggleTodo }) => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => {
-            if (e.key === "Enter" && inputValue.trim() !== "") {
+            if (
+              e.key === "Enter" &&
+              inputValue.trim() !== "" &&
+              !e.isComposing
+            ) {
               addTodo(selectedDate, inputValue);
               setInputValue(""); // 입력창 초기화
             }
