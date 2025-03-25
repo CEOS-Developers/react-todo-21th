@@ -33,7 +33,11 @@ const TodoInput = ({
         onCompositionStart={() => setIsComposing(true)}
         onCompositionEnd={() => setIsComposing(false)}
       />
-      <AddButton onClick={() => addTodoItem(todoInput)} disabled={addDisabled}>
+      <AddButton
+        onClick={() => addTodoItem(todoInput)}
+        disabled={addDisabled}
+        tabindex="0"
+      >
         추가
       </AddButton>
     </TodoInputSection>

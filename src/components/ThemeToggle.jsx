@@ -8,7 +8,7 @@ const ThemeToggle = ({ onClick, theme }) => {
       <ToggleInput
         id="themeToggle"
         type="checkbox"
-        checked={theme === "dark"}
+        $checked={theme === "dark"}
         onChange={onClick}
       />
       <ToggleLabel htmlFor="themeToggle" />

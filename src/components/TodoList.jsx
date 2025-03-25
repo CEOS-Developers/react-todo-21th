@@ -16,20 +16,17 @@ const TodoList = ({
           {todos[date.selectedDate]?.map((item) => (
             <TodoListItem
               key={item.id}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0 }}
+              $initial={{ opacity: 0, scale: 0 }}
+              $animate={{ opacity: 1, scale: 1 }}
+              $exit={{ opacity: 0, scale: 0 }}
             >
               <CheckButton
                 type="checkbox"
                 id={item.id}
-                checked={item.completed === true ? true : false}
+                checked={item.completed}
                 onChange={() => handleClickComplete(item)}
               />
-              <Text
-                htmlFor={item.id}
-                checked={item.completed === true ? true : false}
-              >
+              <Text htmlFor={item.id} checked={item.completed}>
                 {item.text}
               </Text>
               <DeleteButton onClick={() => handleClickDelete(item)} />

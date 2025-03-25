@@ -13,12 +13,6 @@ const GlobalStyles = createGlobalStyle`
 	}
 
 	@font-face {
-		font-family : 'Pretendard Bold';
-		src : url('../src/assets/fonts/Pretendard-Bold.woff2');
-    	font-style: normal;
-	}
-
-	@font-face {
 		font-family : 'Pretendard ExtraBold';
 		src : url('../src/assets/fonts/Pretendard-ExtraBold.woff2');
     	font-style: normal;
@@ -30,7 +24,6 @@ const GlobalStyles = createGlobalStyle`
 		padding: 0;
 		border: 0;
 		font-size: 100%;
-		font-family: 'Pretendard', sans-serif;
 		vertical-align: baseline;
 	}
 
@@ -56,6 +49,11 @@ const GlobalStyles = createGlobalStyle`
 	table {
 		border-collapse: collapse;
 		border-spacing: 0;
+	}
+
+	/* 키보드로 인풋에 포커스 시 */
+	input:focus-visible {
+		outline: 1px solid ${(props) => props.theme.mainText};
 	}
 `;
 
